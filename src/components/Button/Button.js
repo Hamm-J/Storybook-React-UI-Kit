@@ -1,51 +1,113 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { ButtonStyled, ButtonLabelStyled, AddStyled } from "./Button.styled";
+import React from "react";
+import PropTypes from "prop-types";
+import {
+  ButtonContentWrapperStyled,
+  ButtonStyled,
+  ButtonLabelStyled,
+  AddIconStyled,
+  RefreshIconStyled,
+} from "./Button.styled";
 
 const Button = ({
-    label,
-    btnSize = "md",
-    fontSize = 16,
-    fontColor = "white",
-    backgroundColor = "blueviolet",
-    handleClick,
-  }) => {
-  
-    let scale = 1;
-    if (btnSize === "sm") scale = 0.3;
-    if (btnSize === "lg") scale = 1.5;
-    if (btnSize === "xl") scale = 2.5;
-  
-    return (
-      <div>
-        <ButtonStyled 
-        // FIXME: JH2021_12_11
-        // onClick is causing StoryBook args to strip styles
-
-        // onClick={handleClick}
-        backgroundColor={backgroundColor}
-        fontSize={fontSize}
-        scale={scale}
-        fontColor={fontColor}
-        >
-          <AddStyled /> 
-          <ButtonLabelStyled>
-            {label}
-          </ButtonLabelStyled>
-        </ButtonStyled>
-
-     </div>
-    );
+  buttonType = "iconLabel",
+  label,
+  disabledState = false,
+  loadingState = false,
+  backgroundColor = "#6E41E2",
+  fontColor = "white",
+  handleClick,
+}) => {
+  const styles = {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
   };
-  
-  Button.propTypes = {
-    label: PropTypes.string,
-    fontColor: PropTypes.string,
-    backgroundColor: PropTypes.string,
-    fontSize: PropTypes.number,
-    btnSize: PropTypes.oneOf(["sm", "md", "lg", "xl"]),
-    handleClick: PropTypes.func,
-  };
-  
-  export default Button;
-  
+
+  let cursorState;
+  cursorState = loadingState
+    ? (cursorState = "wait")
+    : (cursorState = "pointer");
+
+  // * return different versions of the button depending on buttonType
+  switch (buttonType) {
+    case "iconLabel":
+      return (
+        <div style={styles}>
+          <ButtonStyled
+            // FIXME: JH2021_12_11
+            // onClick is causing StoryBook args to strip styles
+            // onClick={handleClick}
+            cursorState={cursorState}
+            disabled={disabledState}
+            fontColor={fontColor}
+            backgroundColor={backgroundColor}
+          >
+            {loadingState ? (
+              <RefreshIconStyled />
+            ) : (
+              <ButtonContentWrapperStyled>
+                <AddIconStyled />
+                <ButtonLabelStyled>{label}</ButtonLabelStyled>
+              </ButtonContentWrapperStyled>
+            )}
+          </ButtonStyled>
+        </div>
+      );
+
+    case "label":
+      return (
+        <div style={styles}>
+          <div style={styles}>
+            <ButtonStyled
+              // FIXME: JH2021_12_11
+              // onClick is causing StoryBook args to strip styles
+              // onClick={handleClick}
+              cursorState={cursorState}
+              disabled={disabledState}
+              fontColor={fontColor}
+              backgroundColor={backgroundColor}
+            >
+              {loadingState ? (
+                <RefreshIconStyled />
+              ) : (
+                <ButtonContentWrapperStyled>
+                  <ButtonLabelStyled>{label}</ButtonLabelStyled>
+                </ButtonContentWrapperStyled>
+              )}
+            </ButtonStyled>
+          </div>
+        </div>
+      );
+
+    case "icon":
+      return (
+        <div style={styles}>
+          <div style={styles}>
+            <ButtonStyled
+              // FIXME: JH2021_12_11
+              // onClick is causing StoryBook args to strip styles
+              // onClick={handleClick}
+              cursorState={cursorState}
+              disabled={disabledState}
+              fontColor={fontColor}
+              backgroundColor={backgroundColor}
+            >
+              {loadingState ? <RefreshIconStyled /> : <AddIconStyled />}
+            </ButtonStyled>
+          </div>
+        </div>
+      );
+  }
+};
+
+Button.propTypes = {
+  buttonType: PropTypes.oneOf(["icon", "label", "iconLabel"]),
+  label: PropTypes.string,
+  disabledState: PropTypes.bool,
+  loadingState: PropTypes.bool,
+  backgroundColor: PropTypes.string,
+  fontColor: PropTypes.string,
+  handleClick: PropTypes.func,
+};
+
+export default Button;
