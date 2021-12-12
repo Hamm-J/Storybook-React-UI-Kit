@@ -20,7 +20,7 @@ const Button = ({
       <div>
         <ButtonStyled 
         // FIXME: JH2021_12_11
-        // 
+        // onClick is causing StoryBook args to strip styles
 
         // onClick={handleClick}
         backgroundColor={backgroundColor}
