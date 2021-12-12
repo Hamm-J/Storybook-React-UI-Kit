@@ -20,7 +20,7 @@ Default.args = {
 export const Red = Template.bind({});
 Red.args = {
   label: "Click Me",
-  backgroundcolor: "red"
+  backgroundColor: "red",
 };
 
 export const LargeBlue = Template.bind({});
