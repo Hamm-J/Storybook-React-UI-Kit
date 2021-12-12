@@ -4,7 +4,7 @@ export default {
   title: "Components/Button",
   component: Button,
   argTypes: { 
-    handleClick: { action: "execute handleClick"}
+    handleClick: { action: "handleClick"}
 }
 };
 
@@ -35,5 +35,5 @@ SmallPink.args = {
     label: "Click Me",
     backgroundColor: "pink",
     btnSize: "sm",
-    textSize: 12,
+    fontSize: 12,
 }

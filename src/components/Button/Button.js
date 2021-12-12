@@ -1,41 +1,47 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { ButtonStyled } from "./Button.styled";
 
 const Button = ({
-  label,
-  btnSize = "md",
-  textSize = 16,
-  color = "white",
-  backgroundColor = "blueviolet",
-  handleClick,
-}) => {
+    label,
+    btnSize = "md",
+    fontSize = 16,
+    fontColor = "white",
+    backgroundColor = "blueviolet",
+    handleClick,
+  }) => {
+  
+    let scale = 1;
+    if (btnSize === "sm") scale = 0.3;
+    if (btnSize === "lg") scale = 1.5;
+    if (btnSize === "xl") scale = 2.5;
+  
+    return (
+      <div>
+        <ButtonStyled 
+        // FIXME: JH2021_12_11
+        // onClick is causing StoryBook args to strip styles
 
-  let scale = 1;
-  if (btnSize === "sm") scale = 0.3;
-  if (btnSize === "lg") scale = 1.5;
-  if (btnSize === "xl") scale = 2.5;
-
-  const styles = {
-    border: "none",
-    fontSize: `${textSize}px`,
-    backgroundColor,
-    color,
-    padding: `${scale * 0.5}rem ${scale * 1}rem`,
+        // onClick={handleClick}
+        backgroundColor={backgroundColor}
+        fontSize={fontSize}
+        scale={scale}
+        fontColor={fontColor}
+        >
+            {label}
+        </ButtonStyled>
+     </div>
+    );
   };
-
-  return (
-    <div>
-      <button onClick={handleClick} style={styles}>{label}</button>
-    </div>
-  );
-};
-
-Button.propTypes = {
-  label: PropTypes.string,
-  textSize: PropTypes.number,
-  btnSize: PropTypes.oneOf(["sm", "md", "lg", "xl"]),
-  backgroundColor: PropTypes.string,
-  handleClick: PropTypes.func,
-};
-
-export default Button;
+  
+  Button.propTypes = {
+    label: PropTypes.string,
+    fontColor: PropTypes.string,
+    backgroundColor: PropTypes.string,
+    fontSize: PropTypes.number,
+    btnSize: PropTypes.oneOf(["sm", "md", "lg", "xl"]),
+    handleClick: PropTypes.func,
+  };
+  
+  export default Button;
+  
