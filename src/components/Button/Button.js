@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ButtonStyled } from "./Button.styled";
+import { ButtonStyled, ButtonLabelStyled, AddStyled } from "./Button.styled";
 
 const Button = ({
     label,
@@ -28,8 +28,12 @@ const Button = ({
         scale={scale}
         fontColor={fontColor}
         >
+          <AddStyled /> 
+          <ButtonLabelStyled>
             {label}
+          </ButtonLabelStyled>
         </ButtonStyled>
+
      </div>
     );
   };
