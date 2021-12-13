@@ -7,3 +7,5 @@ Initiated the project using React and StoryBookJS
 
 ### Pre-release Highlights
 Added styled-components library to project for CSS styling of components.
+## 0.1.1 (2021-12-12)
+Added Button Primary story.
