@@ -1,13 +1,13 @@
 import styled, { keyframes } from "styled-components";
 import { Add, Refresh } from "@styled-icons/material";
 
-export const ButtonContentWrapperStyled = styled.div`
+export const ButtonContentWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
 `;
 
-export const ButtonLabelStyled = styled.span``;
+export const ButtonLabel = styled.span``;
 
 const RefreshIconAnimation = keyframes`
   from {
@@ -18,18 +18,18 @@ const RefreshIconAnimation = keyframes`
   }
 `;
 
-export const AddIconStyled = styled(Add)`
+export const AddIcon = styled(Add)`
   width: 25px;
 `;
 
-export const RefreshIconStyled = styled(Refresh)`
+export const RefreshIcon = styled(Refresh)`
   width: 25px;
   animation-name: ${RefreshIconAnimation};
   animation-duration: 1.2s;
   animation-iteration-count: infinite;
 `;
 
-export const ButtonStyled = styled.button`
+export const ButtonField = styled.button`
   /* width: 124px; */
   padding: 10px 10px;
   height: 44px;

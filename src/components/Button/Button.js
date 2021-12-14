@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {
-  ButtonContentWrapperStyled,
-  ButtonStyled,
-  ButtonLabelStyled,
-  AddIconStyled,
-  RefreshIconStyled,
+  ButtonContentWrapper,
+  ButtonField,
+  ButtonLabel,
+  AddIcon,
+  RefreshIcon,
 } from "./Button.styled";
 
 const Button = ({
@@ -33,7 +33,7 @@ const Button = ({
     case "iconLabel":
       return (
         <div style={styles}>
-          <ButtonStyled
+          <ButtonField
             // FIXME: JH2021_12_11
             // onClick is causing StoryBook args to strip styles
             // onClick={handleClick}
@@ -43,60 +43,58 @@ const Button = ({
             backgroundColor={backgroundColor}
           >
             {loadingState ? (
-              <RefreshIconStyled />
+              <RefreshIcon />
             ) : (
-              <ButtonContentWrapperStyled>
-                <AddIconStyled />
-                <ButtonLabelStyled>{label}</ButtonLabelStyled>
-              </ButtonContentWrapperStyled>
+              <ButtonContentWrapper>
+                <AddIcon />
+                <ButtonLabel>{label}</ButtonLabel>
+              </ButtonContentWrapper>
             )}
-          </ButtonStyled>
+          </ButtonField>
         </div>
       );
 
     case "label":
       return (
         <div style={styles}>
-          <div style={styles}>
-            <ButtonStyled
-              // FIXME: JH2021_12_11
-              // onClick is causing StoryBook args to strip styles
-              // onClick={handleClick}
-              cursorState={cursorState}
-              disabled={disabledState}
-              fontColor={fontColor}
-              backgroundColor={backgroundColor}
-            >
-              {loadingState ? (
-                <RefreshIconStyled />
-              ) : (
-                <ButtonContentWrapperStyled>
-                  <ButtonLabelStyled>{label}</ButtonLabelStyled>
-                </ButtonContentWrapperStyled>
-              )}
-            </ButtonStyled>
-          </div>
+          <ButtonField
+            // FIXME: JH2021_12_11
+            // onClick is causing StoryBook args to strip styles
+            // onClick={handleClick}
+            cursorState={cursorState}
+            disabled={disabledState}
+            fontColor={fontColor}
+            backgroundColor={backgroundColor}
+          >
+            {loadingState ? (
+              <RefreshIcon />
+            ) : (
+              <ButtonContentWrapper>
+                <ButtonLabel>{label}</ButtonLabel>
+              </ButtonContentWrapper>
+            )}
+          </ButtonField>
         </div>
       );
 
     case "icon":
       return (
         <div style={styles}>
-          <div style={styles}>
-            <ButtonStyled
-              // FIXME: JH2021_12_11
-              // onClick is causing StoryBook args to strip styles
-              // onClick={handleClick}
-              cursorState={cursorState}
-              disabled={disabledState}
-              fontColor={fontColor}
-              backgroundColor={backgroundColor}
-            >
-              {loadingState ? <RefreshIconStyled /> : <AddIconStyled />}
-            </ButtonStyled>
-          </div>
+          <ButtonField
+            // FIXME: JH2021_12_11
+            // onClick is causing StoryBook args to strip styles
+            // onClick={handleClick}
+            cursorState={cursorState}
+            disabled={disabledState}
+            fontColor={fontColor}
+            backgroundColor={backgroundColor}
+          >
+            {loadingState ? <RefreshIcon /> : <AddIcon />}
+          </ButtonField>
         </div>
       );
+    default:
+      <div>switch default</div>;
   }
 };
 
