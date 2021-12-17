@@ -17,8 +17,8 @@ const Input = ({
   const [inputValue, setInputValue] = useState("");
   
   if (
-    (inputValue == "" && inputState == "success") ||
-    (inputValue == "" && inputState == "autofill")
+    (inputValue === "" && inputState === "success") ||
+    (inputValue === "" && inputState === "autofill")
   ) {
     setInputValue("John Smith");
   }
@@ -31,22 +31,22 @@ const Input = ({
         placeholder=""
         value={inputValue}
         onChange={(event) => setInputValue(event.target.value)}
-        disabled={inputState == "disabled" ? true : false}
+        disabled={inputState === "disabled" ? true : false}
       />
       <InputLabel className="input__label" for="inputId">
         {label}
       </InputLabel>
-      {inputState == "success" || inputState == "autofill" ? (
+      {inputState === "success" || inputState === "autofill" ? (
         <DoneIcon />
       ) : (
         <></>
       )}
-      {inputState == "error" ? (
+      {inputState === "error" ? (
         <InputMessage inputState={inputState}>{errorMessage}</InputMessage>
       ) : (
         <></>
       )}
-      {inputState == "description" ? (
+      {inputState === "description" ? (
         <InputMessage inputState={inputState}>
           {descriptionMessage}
         </InputMessage>

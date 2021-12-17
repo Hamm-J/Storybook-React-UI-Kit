@@ -88,7 +88,7 @@ export const InputMessage = styled.label`
   left: 2px;
   color: #db524e;
   color: ${(props) =>
-    props.inputState == "error" ? "#DB524E" : "rgba(17, 17, 17, 0.48)"};
+    props.inputState === "error" ? "#DB524E" : "rgba(17, 17, 17, 0.48)"};
 `;
 
 export const DoneIcon = styled(Done)`
