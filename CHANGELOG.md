@@ -20,3 +20,7 @@ Added Input Primary story.
 ## 0.1.4 (2021-12-17)
 ### Pre-release Highlights
 Added Avatar Primary Story.
+
+## 0.1.5 (2021-12-17)
+### Pre-release Highlights
+Added Badge Primary Story.
