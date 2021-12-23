@@ -24,3 +24,7 @@ Added Avatar Primary Story.
 ## 0.1.5 (2021-12-17)
 ### Pre-release Highlights
 Added Badge Primary Story.
+
+## 0.1.6 (2021-12-22)
+### Pre-release Highlights
+Added Tab Primary Story
