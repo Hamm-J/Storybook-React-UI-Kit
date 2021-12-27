@@ -28,3 +28,7 @@ Added Badge Primary Story.
 ## 0.1.6 (2021-12-22)
 ### Pre-release Highlights
 Added Tab Primary Story
+
+## 0.1.7 (2021-12-27)
+### Pre-release Highlights
+Added Toggle Primary Story
