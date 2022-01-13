@@ -106,7 +106,7 @@ export const ToggleLabel = styled.label`
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    border: 2px solid #bbace2;
+    border: 2px solid #e3daf9;
   }
 `;
 
