@@ -62,3 +62,9 @@ enabled instead of disabled.
 ### Pre-release Highlights
 
 Added Notification Primary Story
+
+## 0.2.0 (2022-02-24)
+
+### Pre-release Highlights
+
+Added Filter Primary Story
