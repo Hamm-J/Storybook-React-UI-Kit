@@ -75,8 +75,14 @@ Added Filter Primary Story
 
 Added Context Menu Primary Story
 
-## 0.2.2 (2202-02-25)
+## 0.2.2 (2022-02-25)
 
 ### Pre-release Highlights
 
 Added Tooltip Primary Story
+
+## 0.2.3 (2022-02-26)
+
+### Pre-release Highlights
+
+Added Search Primary Story
