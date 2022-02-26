@@ -68,3 +68,9 @@ Added Notification Primary Story
 ### Pre-release Highlights
 
 Added Filter Primary Story
+
+## 0.2.1 (2022-02-25)
+
+### Pre-release Highlights
+
+Added Context Menu Primary Story
