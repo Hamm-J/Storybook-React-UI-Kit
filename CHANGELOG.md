@@ -86,3 +86,9 @@ Added Tooltip Primary Story
 ### Pre-release Highlights
 
 Added Search Primary Story
+
+## 0.2.4 (2022-03-01)
+
+### Pre-release Highlights
+
+Added Popup Story
