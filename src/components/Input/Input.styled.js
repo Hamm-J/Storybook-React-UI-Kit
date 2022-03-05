@@ -62,7 +62,7 @@ export const InputField = styled.input.attrs({ type: "input" })`
     left: 16px;
     font-size: 0.8rem;
   }
-  
+
   &:focus ~ .input {
     box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
       0px 4px 24px rgba(51, 51, 51, 0.24);
@@ -96,5 +96,5 @@ export const DoneIcon = styled(Done)`
   top: 14px;
   left: 450px;
   width: 24px;
-  color: #27AE60;
+  color: #27ae60;
 `;
