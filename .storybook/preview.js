@@ -5,6 +5,7 @@ import { colors } from "../src/shared/colors";
 import { shadows } from "../src/shared/shadows";
 import { fonts } from "../src/shared/fonts";
 import "@fontsource/roboto";
+import "@fontsource/montserrat";
 
 // TODO: add in real themes
 // const placeholderTheme1 = {};
