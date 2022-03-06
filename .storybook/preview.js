@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components";
 import { colors } from "../src/shared/colors";
 import { shadows } from "../src/shared/shadows";
 import { fonts } from "../src/shared/fonts";
+import "@fontsource/roboto";
 
 // TODO: add in real themes
 // const placeholderTheme1 = {};

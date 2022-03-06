@@ -1,5 +1,5 @@
 export const fonts = {
-  font56Heading1: "normal normal 900 56px/64px Montserrat",
+  font56Heading1: "normal normal 900 56px/64px Roboto",
   font48Heading2: "",
   font40Heading3: "",
   font32Heading4: "",
