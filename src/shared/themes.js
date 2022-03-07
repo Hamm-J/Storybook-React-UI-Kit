@@ -7,6 +7,7 @@ export const themePrimary = {
   color: colors.colorWhite,
   borderToggle: false,
   shadowsToggle: false,
+  borderColor: colors.colorPrimary,
 };
 
 // Background: white, font: purple, with border, no shadows
@@ -26,5 +27,6 @@ export const themePrimaryWhite = {
   color: colors.colorPrimary,
   borderToggle: false,
   shadowsToggle: true,
+  borderColor: colors.colorGrayL,
   boxShadow: shadows.shadowDefault,
 };
