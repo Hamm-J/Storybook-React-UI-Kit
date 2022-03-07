@@ -6,6 +6,7 @@ import { ThemeProvider } from "styled-components";
 import { colors } from "../src/shared/colors";
 import { shadows } from "../src/shared/shadows";
 import { fonts } from "../src/shared/fonts";
+import { themePrimary, themeSecondary, themeWhite } from "../src/shared/themes";
 // Import fonts
 import "@fontsource/roboto";
 import "@fontsource/montserrat";
@@ -13,8 +14,13 @@ import "@fontsource/montserrat";
 // Create shared theme object. This object will be spread into any theme created.
 const shared = { ...colors, ...shadows, ...fonts };
 
+// Merge in the shared theme values with the various themes
+const themePrimaryShared = { ...themePrimary, ...shared };
+const themeSecondaryShared = { ...themeSecondary, ...shared };
+const themeWhiteShared = { ...themeWhite, ...shared };
+
 // Pass theme objects into themes array for storybook
-const themes = [shared];
+const themes = [themePrimaryShared, themeSecondaryShared, themeWhiteShared];
 
 // Pass custom themes array and styled-componenst ThemeProvider to storybook
 // story decorator function
