@@ -1,13 +1,24 @@
 import styled, { keyframes } from "styled-components";
 import { Add, Refresh } from "@styled-icons/material";
 
-export const ButtonContentWrapper = styled.div`
+export const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
 `;
 
-export const ButtonLabel = styled.span``;
+export const Label = styled.span`
+  font: ${(props) => props.theme.fontParagraph2};
+`;
+
+export const AddIcon = styled(Add)`
+  width: 25px;
+`;
 
 const RefreshIconAnimation = keyframes`
   from {
@@ -17,11 +28,6 @@ const RefreshIconAnimation = keyframes`
     transform: rotate(359deg);
   }
 `;
-
-export const AddIcon = styled(Add)`
-  width: 25px;
-`;
-
 export const RefreshIcon = styled(Refresh)`
   width: 25px;
   animation-name: ${RefreshIconAnimation};
@@ -30,37 +36,39 @@ export const RefreshIcon = styled(Refresh)`
 `;
 
 export const ButtonField = styled.button`
-  /* width: 124px; */
   padding: 10px 10px;
   height: 44px;
   outline: none;
-  border: none;
-  cursor: ${(props) => props.cursorState};
-  border-radius: .3rem;
+  border-style: solid;
+  border-width: 2px;
+  border-color: ${(props) => props.theme.borderColor};
+  cursor: ${(props) => (props.loadingState ? "wait" : "pointer")};
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  /* Attributes with props/args */
-  background-color: ${(props) => props.backgroundColor};
-  color: ${(props) => props.fontColor};
+  background-color: ${(props) => props.theme.backgroundColor};
+  color: ${(props) => props.theme.color};
 
   &:hover {
-    background-color: #5835b0;
+    background-color: ${(props) => props.theme.backgroundColorHover};
     transition: all 200ms;
   }
   &:active {
-    background-color: #472c8a;
+    background-color: ${(props) => props.theme.backgroundColorActive};
     transition: all 200ms;
   }
   &:focus {
-    outline: solid;
-    outline-width: 2px;
-    outline-color: #111111;
+    border-style: solid;
+    border-width: 2px;
+    border-color: ${(props) => props.theme.borderColorFocus};
   }
   &:disabled {
-    background-color: #e3daf9;
-    cursor: not-allowed; 
+    background-color: ${(props) => props.theme.backgroundColorDisabled};
+    border-color: ${(props) => props.theme.borderColorDisabled};
+    opacity: 0.56;
+    cursor: not-allowed;
   }
 `;

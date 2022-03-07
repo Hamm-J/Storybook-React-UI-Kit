@@ -1,101 +1,49 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {
-  ButtonContentWrapper,
+  ButtonContainer,
+  ContentWrapper,
   ButtonField,
-  ButtonLabel,
+  Label,
   AddIcon,
   RefreshIcon,
 } from "./Button.styled";
 
 const Button = ({
-  buttonType = "iconLabel",
+  buttonType,
   label,
-  disabledState = false,
-  loadingState = false,
+  disabledState,
+  loadingState,
   backgroundColor = "#6E41E2",
   fontColor = "white",
   handleClick,
 }) => {
-  const styles = {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-  };
-
-  let cursorState;
-  cursorState = loadingState
-    ? (cursorState = "wait")
-    : (cursorState = "pointer");
-
-  // * return different versions of the button depending on buttonType
-  switch (buttonType) {
-    case "iconLabel":
-      return (
-        <div style={styles}>
-          <ButtonField
-            // FIXME: JH2021_12_11
-            // onClick is causing StoryBook args to strip styles
-            // onClick={handleClick}
-            cursorState={cursorState}
-            disabled={disabledState}
-            fontColor={fontColor}
-            backgroundColor={backgroundColor}
-          >
-            {loadingState ? (
-              <RefreshIcon />
-            ) : (
-              <ButtonContentWrapper>
+  return (
+    <ButtonContainer>
+      <ButtonField
+        onClick={handleClick}
+        loadingState={loadingState}
+        disabled={disabledState}
+        fontColor={fontColor}
+        backgroundColor={backgroundColor}
+      >
+        {loadingState ? (
+          <RefreshIcon />
+        ) : (
+          <ContentWrapper>
+            {buttonType === "iconLabel" && (
+              <>
                 <AddIcon />
-                <ButtonLabel>{label}</ButtonLabel>
-              </ButtonContentWrapper>
+                <Label className="label">{label}</Label>
+              </>
             )}
-          </ButtonField>
-        </div>
-      );
-
-    case "label":
-      return (
-        <div style={styles}>
-          <ButtonField
-            // FIXME: JH2021_12_11
-            // onClick is causing StoryBook args to strip styles
-            // onClick={handleClick}
-            cursorState={cursorState}
-            disabled={disabledState}
-            fontColor={fontColor}
-            backgroundColor={backgroundColor}
-          >
-            {loadingState ? (
-              <RefreshIcon />
-            ) : (
-              <ButtonContentWrapper>
-                <ButtonLabel>{label}</ButtonLabel>
-              </ButtonContentWrapper>
-            )}
-          </ButtonField>
-        </div>
-      );
-
-    case "icon":
-      return (
-        <div style={styles}>
-          <ButtonField
-            // FIXME: JH2021_12_11
-            // onClick is causing StoryBook args to strip styles
-            // onClick={handleClick}
-            cursorState={cursorState}
-            disabled={disabledState}
-            fontColor={fontColor}
-            backgroundColor={backgroundColor}
-          >
-            {loadingState ? <RefreshIcon /> : <AddIcon />}
-          </ButtonField>
-        </div>
-      );
-    default:
-      <div>switch default</div>;
-  }
+            {buttonType === "icon" && <AddIcon />}
+            {buttonType === "label" && <Label>{label}</Label>}
+          </ContentWrapper>
+        )}
+      </ButtonField>
+    </ButtonContainer>
+  );
 };
 
 Button.propTypes = {
@@ -105,7 +53,6 @@ Button.propTypes = {
   loadingState: PropTypes.bool,
   backgroundColor: PropTypes.string,
   fontColor: PropTypes.string,
-  handleClick: PropTypes.func,
 };
 
 export default Button;
