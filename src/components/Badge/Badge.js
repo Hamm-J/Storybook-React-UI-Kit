@@ -1,18 +1,16 @@
-import { BadgeWrapper, BadgeLabel } from './Badge.styled';
-import PropTypes from 'prop-types';
+import { BadgeContainer, Label } from "./Badge.styled";
+import PropTypes from "prop-types";
 
-const Badge = ({label})  => {
-    return (
-        <div>
-            <BadgeWrapper>
-                <BadgeLabel>{label}</BadgeLabel>
-            </BadgeWrapper>
-        </div>
-    );
+const Badge = ({ label }) => {
+  return (
+    <BadgeContainer>
+      <Label>{label}</Label>
+    </BadgeContainer>
+  );
 };
 
 Badge.propTypes = {
-    label: PropTypes.string,
+  label: PropTypes.string,
 };
 
 export default Badge;
