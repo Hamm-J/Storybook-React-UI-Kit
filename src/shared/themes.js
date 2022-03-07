@@ -1,5 +1,4 @@
-import { colors } from "./colors";
-import { shadows } from "./shadows";
+import { colors, shadows } from "./styleValues";
 
 // Background: purple, font: white, no border, no shadows
 export const themePrimary = {
