@@ -1,15 +1,19 @@
 import styled from "styled-components";
 
-export const CheckboxWrapper = styled.div`
+export const CheckboxContainer = styled.div`
   position: relative;
 `;
-export const CheckboxField = styled.input.attrs({ type: "checkbox" })`
+export const InputField = styled.input.attrs({ type: "checkbox" })`
   opacity: 0;
+  box-sizing: border-box;
 
   &:checked ~ .checkbox__label:before {
-    outline-color: #6e41e2;
-    background-color: #6e41e2;
+    border-color: ${(props) => props.theme.borderColor};
+    border-width: 2px;
+    background-color: ${(props) => props.theme.backgroundColor};
   }
+
+  // Label:after pseudo element creates the "checkmark"
   &:checked ~ .checkbox__label:after {
     cursor: pointer;
     position: absolute;
@@ -20,8 +24,9 @@ export const CheckboxField = styled.input.attrs({ type: "checkbox" })`
     height: 18px;
     font-size: 20px;
     content: "✔";
-    color: white;
+    color: ${(props) => props.theme.color};
   }
+  // Creates "x" when indeterminate
   &:indeterminate ~ .checkbox__label:after {
     position: absolute;
     top: 0;
@@ -31,39 +36,58 @@ export const CheckboxField = styled.input.attrs({ type: "checkbox" })`
     height: 18px;
     font-size: 20px;
     content: "x";
-    color: white;
+    color: ${(props) => props.theme.color};
   }
 
-  /* style different responsive states for checkbox */
+  // checkbox in focus
   &:focus + .checkbox__label:before {
-    outline: 2px solid rgba(17, 17, 17, 0.48);
+    border-width: 2px;
+    border-color: ${(props) => props.theme.borderColorFocus};
   }
+  // checkbox not checked, but disabled
   &:not(:checked):disabled + .checkbox__label:before {
-    outline: 1px solid #d4d4d4;
-    background-color: white;
-  }
-  &:disabled + .checkbox__label {
-    color: gray;
+    border-width: 1px;
+    border-color: ${(props) => props.theme.borderColorDisabled};
+    background-color: ${(props) => props.theme.colorWhite};
     cursor: not-allowed;
   }
+
+  // checkbox disabled
+  &:disabled + .checkbox__label {
+    color: ${(props) => props.theme.colorGray};
+    cursor: not-allowed;
+  }
+  // checkbox checked and hovered over
   &:checked + .checkbox__label:hover:before {
-    background-color: #5835b0;
+    background-color: ${(props) => props.theme.backgroundColorHover};
   }
+
+  // checkbox checked and active
   &:checked + .checkbox__label:active:before {
-    background-color: #472c8a;
+    background-color: ${(props) => props.theme.backgroundColorActive};
   }
+
+  // checkbox checked and in focus
   &:checked:focus + .checkbox__label:before {
-    outline: 2px solid #5835b0;
+    border-width: 2px;
+    border-color: ${(props) => props.theme.borderColorFocus};
   }
+
+  // checkbox checked and disabled
   &:checked:disabled + .checkbox__label:before {
     opacity: 0.56;
   }
 `;
 
-export const CheckboxLabel = styled.label`
+export const Label = styled.label`
   padding-left: 5px;
-  color: ${(props) => (props.checkboxState == "error" ? "#DB524E" : "#white")};
+  color: ${(props) =>
+    props.checkboxState == "error"
+      ? props.theme.colorRed
+      : props.theme.colorBlack};
 
+  // Label:before pseudo element creates the "checkbox"
+  // Label:after pseudo element creates the "checkmark"
   &:before {
     cursor: pointer;
     border-radius: 4px;
@@ -72,20 +96,28 @@ export const CheckboxLabel = styled.label`
     top: 0;
     left: 0;
     display: inline-block;
-    background-color: ${(props) =>
-      props.checkboxState == "error" ? "#F9E3E3" : "white;"};
     width: 18px;
     height: 18px;
-    outline: 1px solid
-      ${(props) => (props.checkboxState == "error" ? "#F9E3E3" : "#d4d4d4;")};
+    outline: none;
+    border-style: solid;
+    border-width: 1px;
+    border-color: ${(props) =>
+      props.checkboxState === "error"
+        ? props.theme.colorRedGirl
+        : props.theme.colorGrayS};
+    background-color: ${(props) =>
+      props.checkboxState === "error"
+        ? props.theme.colorRedGirl
+        : props.theme.colorWhite};
   }
 
-  /* style different responsive states for checkbox */
+  // hover over "checkbox"
   &:hover:before {
-    background-color: #fafafa;
+    background-color: ${(props) => props.theme.colorGrayM};
   }
 
+  // "checkbox" is active
   &:active:before {
-    background-color: #f1f1f1;
+    background-color: ${(props) => props.theme.colorGrayL};
   }
 `;

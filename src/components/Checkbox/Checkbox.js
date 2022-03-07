@@ -1,29 +1,23 @@
-import {
-  CheckboxWrapper,
-  CheckboxField,
-  CheckboxLabel,
-} from "./Checkbox.styled";
+import { CheckboxContainer, InputField, Label } from "./Checkbox.styled";
 import PropTypes from "prop-types";
 
-const Checkbox = ({ label, checkboxState = "default" }) => {
+const Checkbox = ({ label, checkboxState }) => {
   return (
-    <div>
-      <CheckboxWrapper>
-        <CheckboxField
-          className="checkbox"
-          id="checkbox"
-          checkboxState={checkboxState}
-          disabled={checkboxState === "disabled" ? true : false}
-        />
-        <CheckboxLabel
-          className="checkbox__label"
-          for="checkbox"
-          checkboxState={checkboxState}
-        >
-          {label}
-        </CheckboxLabel>
-      </CheckboxWrapper>
-    </div>
+    <CheckboxContainer>
+      <InputField
+        className="checkbox"
+        id="checkbox"
+        checkboxState={checkboxState}
+        disabled={checkboxState === "disabled" ? true : false}
+      />
+      <Label
+        className="checkbox__label"
+        for="checkbox"
+        checkboxState={checkboxState}
+      >
+        {label}
+      </Label>
+    </CheckboxContainer>
   );
 };
 
