@@ -1,23 +1,13 @@
 import styled, { keyframes } from "styled-components";
 import { Add, Refresh } from "@styled-icons/material";
 
-export const ButtonContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-export const ContentWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
 export const Label = styled.span`
   font: ${(props) => props.theme.fontParagraph2};
 `;
 
 export const AddIcon = styled(Add)`
   width: 25px;
+  margin-right: ${(props) => (props.buttonType === "iconLabel" ? "7px" : "0")};
 `;
 
 const RefreshIconAnimation = keyframes`
@@ -35,22 +25,43 @@ export const RefreshIcon = styled(Refresh)`
   animation-iteration-count: infinite;
 `;
 
+// handle the min-width of ButtonType depending on buttonType
+const handleButtonFieldMinWidth = (buttonType) => {
+  switch (buttonType) {
+    case "iconLabel":
+      return "124px";
+    case "icon":
+      return "46px";
+    case "label":
+      return "96px";
+    case "iconCircle":
+      return "44px";
+    default:
+      return "100px";
+  }
+};
+
 export const ButtonField = styled.button`
-  padding: 10px 10px;
-  height: 44px;
+  box-sizing: border-box;
+  padding: 10px 10px 10px 10px;
+  min-height: 46px;
+  min-width: ${(props) => handleButtonFieldMinWidth(props.buttonType)};
+
   outline: none;
   border-style: solid;
   border-width: 2px;
   border-color: ${(props) => props.theme.borderColor};
+  border-radius: ${(props) =>
+    props.buttonType === "iconCircle" ? "100%" : "4px"};
   cursor: ${(props) => (props.loadingState ? "wait" : "pointer")};
-  border-radius: 4px;
+
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
 
   background-color: ${(props) => props.theme.backgroundColor};
   color: ${(props) => props.theme.color};
+  box-shadow: ${(props) => props.theme.boxShadow};
 
   &:hover {
     background-color: ${(props) => props.theme.backgroundColorHover};
