@@ -1,33 +1,36 @@
 import styled from "styled-components";
 
 export const CheckboxContainer = styled.div`
-  position: relative;
+  max-width: fit-content;
+  max-height: fit-content;
 `;
 export const InputField = styled.input.attrs({ type: "checkbox" })`
   opacity: 0;
-  box-sizing: border-box;
 
-  &:checked ~ .checkbox__label:before {
+  &:checked ~ .label:before {
     border-color: ${(props) => props.theme.borderColor};
     border-width: 2px;
     background-color: ${(props) => props.theme.backgroundColor};
+    // change width and height to cancel out border-width increase
+    width: 20px;
+    height: 20px;
   }
 
   // Label:after pseudo element creates the "checkmark"
-  &:checked ~ .checkbox__label:after {
+  &:checked ~ .label:after {
     cursor: pointer;
     position: absolute;
-    top: 0;
-    left: 0;
     display: inline-block;
-    width: 18px;
-    height: 18px;
-    font-size: 20px;
-    content: "✔";
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 24px;
+    content: "✓";
     color: ${(props) => props.theme.color};
   }
   // Creates "x" when indeterminate
-  &:indeterminate ~ .checkbox__label:after {
+  &:indeterminate ~ .label:after {
     position: absolute;
     top: 0;
     left: 0;
@@ -40,12 +43,15 @@ export const InputField = styled.input.attrs({ type: "checkbox" })`
   }
 
   // checkbox in focus
-  &:focus + .checkbox__label:before {
+  &:focus + .label:before {
     border-width: 2px;
     border-color: ${(props) => props.theme.borderColorFocus};
+    // change width and height to cancel out border-width increase
+    width: 20px;
+    height: 20px;
   }
   // checkbox not checked, but disabled
-  &:not(:checked):disabled + .checkbox__label:before {
+  &:not(:checked):disabled + .label:before {
     border-width: 1px;
     border-color: ${(props) => props.theme.borderColorDisabled};
     background-color: ${(props) => props.theme.colorWhite};
@@ -53,38 +59,45 @@ export const InputField = styled.input.attrs({ type: "checkbox" })`
   }
 
   // checkbox disabled
-  &:disabled + .checkbox__label {
+  &:disabled + .label {
     color: ${(props) => props.theme.colorGray};
     cursor: not-allowed;
   }
   // checkbox checked and hovered over
-  &:checked + .checkbox__label:hover:before {
+  &:checked + .label:hover:before {
     background-color: ${(props) => props.theme.backgroundColorHover};
   }
 
   // checkbox checked and active
-  &:checked + .checkbox__label:active:before {
+  &:checked + .label:active:before {
     background-color: ${(props) => props.theme.backgroundColorActive};
   }
 
   // checkbox checked and in focus
-  &:checked:focus + .checkbox__label:before {
+  &:checked:focus + .label:before {
     border-width: 2px;
     border-color: ${(props) => props.theme.borderColorFocus};
+    // change width to cancel out border-width increase
+    width: 20px;
+    height: 20px;
   }
 
   // checkbox checked and disabled
-  &:checked:disabled + .checkbox__label:before {
+  &:checked:disabled + .label:before {
     opacity: 0.56;
   }
 `;
 
 export const Label = styled.label`
-  padding-left: 5px;
+  font: ${(props) => props.theme.fontParagraph2};
   color: ${(props) =>
-    props.checkboxState == "error"
+    props.checkboxState === "error"
       ? props.theme.colorRed
       : props.theme.colorBlack};
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
 
   // Label:before pseudo element creates the "checkbox"
   // Label:after pseudo element creates the "checkmark"
@@ -92,12 +105,9 @@ export const Label = styled.label`
     cursor: pointer;
     border-radius: 4px;
     content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
     display: inline-block;
-    width: 18px;
-    height: 18px;
+    width: 22px;
+    height: 22px;
     outline: none;
     border-style: solid;
     border-width: 1px;
@@ -109,6 +119,7 @@ export const Label = styled.label`
       props.checkboxState === "error"
         ? props.theme.colorRedGirl
         : props.theme.colorWhite};
+    box-shadow: ${(props) => props.theme.boxShadow};
   }
 
   // hover over "checkbox"
