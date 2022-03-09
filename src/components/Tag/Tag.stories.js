@@ -1,16 +1,15 @@
-import Tag from './Tag';
+import Tag from "./Tag";
 
 export default {
-    title: "Components/Tag",
-    component: Tag,
-    // FIXME: JH2021_12_14
-    // Look into argTypes for respawning the tag 
-}
+  title: "Components/Tag",
+  component: Tag,
+  argTypes: { handleClose: { action: "handleClose" } },
+};
 
-const Template = (args) => <Tag {...args} />
+const Template = (args) => <Tag {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-    label: "Tag",
-    close: false,
-}
+  label: "Tag",
+  size: "small",
+};

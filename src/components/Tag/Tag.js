@@ -1,25 +1,18 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
-import { TagWrapper, TagCloseSpan, TagLabel, CloseIcon } from "./Tag.styled";
+import { TagContainer, Label, CloseIcon } from "./Tag.styled";
 
-const Tag = ({ label, close }) => {
-  const [closed, setClosed] = useState(false);
-
-  return closed ? (
-    <></>
-  ) : (
-    <TagWrapper>
-      <TagLabel>{label}</TagLabel>
-      <TagCloseSpan onClick={() => setClosed(true)}>
-        <CloseIcon />
-      </TagCloseSpan>
-    </TagWrapper>
+const Tag = ({ label, size, handleClose }) => {
+  return (
+    <TagContainer size={size}>
+      <Label>{label}</Label>
+      <CloseIcon onClick={(e) => handleClose(e)} />
+    </TagContainer>
   );
 };
 
 Tag.propTypes = {
   label: PropTypes.string,
-  close: PropTypes.bool,
+  size: PropTypes.oneOf(["small", "medium"]),
 };
 
 export default Tag;
