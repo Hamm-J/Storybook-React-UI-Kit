@@ -10,4 +10,6 @@ const Template = (args) => <Tab {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
   label: "Name of Tab",
+  tabState: "large",
+  progressValue: 25,
 };
