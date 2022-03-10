@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Done } from "@styled-icons/material";
 
-export const InputWrapper = styled.div`
+export const InputContainer = styled.div`
   background-color: ${(props) => {
     switch (props.inputState) {
       case "error":
@@ -48,7 +48,7 @@ export const InputField = styled.input.attrs({ type: "input" })`
   line-height: 24px;
 
   &:disabled,
-  &:disabled ~ .input__label {
+  &:disabled ~ .label {
     cursor: not-allowed;
     color: rgba(17, 17, 17, 0.24);
   }
@@ -56,8 +56,8 @@ export const InputField = styled.input.attrs({ type: "input" })`
   &:focus {
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   }
-  &:focus ~ .input__label,
-  &:not(:placeholder-shown).input__field:not(:focus) ~ .input__label {
+  &:focus ~ .label,
+  &:not(:placeholder-shown).input-field:not(:focus) ~ .label {
     top: 10px;
     left: 16px;
     font-size: 0.8rem;
@@ -73,7 +73,7 @@ export const InputField = styled.input.attrs({ type: "input" })`
   }
 `;
 
-export const InputLabel = styled.label`
+export const Label = styled.label`
   position: absolute;
   font-size: 16px;
   left: 16px;
@@ -82,7 +82,7 @@ export const InputLabel = styled.label`
   color: rgba(17, 17, 17, 0.48);
 `;
 
-export const InputMessage = styled.label`
+export const Message = styled.label`
   position: absolute;
   top: 65px;
   left: 2px;

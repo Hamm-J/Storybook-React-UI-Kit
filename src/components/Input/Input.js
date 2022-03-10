@@ -1,10 +1,10 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import {
+  InputContainer,
   InputField,
-  InputLabel,
-  InputMessage,
-  InputWrapper,
+  Label,
+  Message,
   DoneIcon,
 } from "./Input.styled";
 
@@ -15,7 +15,7 @@ const Input = ({
   descriptionMessage,
 }) => {
   const [inputValue, setInputValue] = useState("");
-  
+
   if (
     (inputValue === "" && inputState === "success") ||
     (inputValue === "" && inputState === "autofill")
@@ -24,36 +24,26 @@ const Input = ({
   }
 
   return (
-    <InputWrapper className="inputWrapper" inputState={inputState}>
+    <InputContainer className="input-container" inputState={inputState}>
       <InputField
-        className="input__field"
-        id="inputId"
-        placeholder=""
+        className="input-field"
+        id="input-id"
+        placeholder=" "
         value={inputValue}
         onChange={(event) => setInputValue(event.target.value)}
         disabled={inputState === "disabled" ? true : false}
       />
-      <InputLabel className="input__label" for="inputId">
+      <Label className="label" for="input-id">
         {label}
-      </InputLabel>
-      {inputState === "success" || inputState === "autofill" ? (
-        <DoneIcon />
-      ) : (
-        <></>
+      </Label>
+      {(inputState === "success" || inputState === "autofill") && <DoneIcon />}
+      {inputState === "error" && (
+        <Message inputState={inputState}>{errorMessage}</Message>
       )}
-      {inputState === "error" ? (
-        <InputMessage inputState={inputState}>{errorMessage}</InputMessage>
-      ) : (
-        <></>
+      {inputState === "description" && (
+        <Message inputState={inputState}>{descriptionMessage}</Message>
       )}
-      {inputState === "description" ? (
-        <InputMessage inputState={inputState}>
-          {descriptionMessage}
-        </InputMessage>
-      ) : (
-        <></>
-      )}
-    </InputWrapper>
+    </InputContainer>
   );
 };
 Input.propTypes = {
