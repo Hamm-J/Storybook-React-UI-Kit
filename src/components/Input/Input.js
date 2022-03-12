@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import {
   InputContainer,
@@ -15,6 +15,11 @@ const Input = ({
   descriptionMessage,
 }) => {
   const [inputValue, setInputValue] = useState("");
+  const inputRef = useRef();
+
+  const focusInput = () => {
+    inputRef.current.focus();
+  };
 
   if (
     (inputValue === "" && inputState === "success") ||
@@ -24,16 +29,21 @@ const Input = ({
   }
 
   return (
-    <InputContainer className="input-container" inputState={inputState}>
+    <InputContainer
+      className="input-container"
+      inputState={inputState}
+      onClick={() => focusInput()}
+    >
       <InputField
         className="input-field"
         id="input-id"
         placeholder=" "
         value={inputValue}
-        onChange={(event) => setInputValue(event.target.value)}
+        onChange={(e) => setInputValue(e.target.value)}
         disabled={inputState === "disabled" ? true : false}
+        ref={inputRef}
       />
-      <Label className="label" for="input-id">
+      <Label className="label" htmlFor="input-id">
         {label}
       </Label>
       {(inputState === "success" || inputState === "autofill") && <DoneIcon />}
@@ -55,6 +65,7 @@ Input.propTypes = {
     "success",
     "autofill",
     "description",
+    "readonly",
   ]),
   errorMessage: PropTypes.string,
   descriptionMessage: PropTypes.string,
