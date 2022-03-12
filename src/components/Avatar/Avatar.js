@@ -1,15 +1,13 @@
-import { AvatarWrapper, AvatarImg, AvatarBackground } from "./Avatar.styled";
+import { AvatarContainer, Icon, IconBackground } from "./Avatar.styled";
 import PropTypes from "prop-types";
 
-const Avatar = ({ avatar }) => {
+const Avatar = ({ avatar, handleClick }) => {
   return (
-    <div>
-      <AvatarWrapper>
-        <AvatarBackground>
-          <AvatarImg>{avatar}</AvatarImg>
-        </AvatarBackground>
-      </AvatarWrapper>
-    </div>
+    <AvatarContainer onClick={(e) => handleClick(e)}>
+      <IconBackground>
+        <Icon>{avatar}</Icon>
+      </IconBackground>
+    </AvatarContainer>
   );
 };
 
