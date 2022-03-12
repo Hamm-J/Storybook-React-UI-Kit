@@ -27,9 +27,9 @@ const Radio = ({
             className="input-field"
             name={radioGroup}
             id={radioId}
-            disabled={radioState === "disabled" ? true : false}
+            disabled={radioState === "disabled"}
           />
-          <Label className="label" for={radioId}>
+          <Label className="label" htmlFor={radioId}>
             {`label ${radioIdIdx + 1}`}
           </Label>
         </RadioContainer>

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const RadioContainer = styled.div`
-  width: 80px;
-  height: 24px;
+  max-width: fit-content;
+  max-height: 24px;
   position: relative;
   display: flex;
   align-items: center;
@@ -47,6 +47,7 @@ export const InputField = styled.input.attrs({ type: "radio" })`
   &:disabled ~ .label:after,
   &:disabled:hover ~ .label:after {
     background-color: ${(props) => props.theme.backgroundColorDisabled};
+    border: 2px solid ${(props) => props.theme.borderColorDisabled};
     cursor: not-allowed;
   }
 
@@ -60,7 +61,6 @@ export const InputField = styled.input.attrs({ type: "radio" })`
 `;
 
 export const Label = styled.label`
-  padding-top: 2px;
   // have -10px margin so that the label field overlaps with the :before element
   // this way the pointer cursor doesn't disappear when hovering between the
   // label and the :before element
