@@ -1,35 +1,39 @@
 import React from "react";
 import {
   FilterGroupWrapper,
-  FilterWrapper,
-  FilterLabel,
-  FilterInputField,
+  FilterContainer,
+  Label,
+  InputField,
 } from "./Filter.styled";
 import PropTypes from "prop-types";
 
 const Filter = ({ items, filterGroup }) => {
   return (
-    <div>
-      <FilterGroupWrapper>
-        {items.map((item, itemIdx) => (
-          <FilterWrapper key={itemIdx}>
-            <FilterInputField name={filterGroup} id={item} />
-            <FilterLabel
-              for={item}
-              position={
-                itemIdx == 0
-                  ? "left"
-                  : itemIdx + 1 == items.length
-                  ? "right"
-                  : "center"
-              }
-            >
-              {item}
-            </FilterLabel>
-          </FilterWrapper>
-        ))}
-      </FilterGroupWrapper>
-    </div>
+    <FilterGroupWrapper>
+      {items.map((item, itemIdx) => (
+        <FilterContainer key={itemIdx}>
+          <InputField name={filterGroup} id={item} />
+          <Label
+            htmlFor={item}
+            position={
+              // If the item is the first in the group, give it the left border
+              // styling
+              itemIdx === 0
+                ? "left"
+                : // If the item is the last in the group, give it the right
+                // border styling
+                itemIdx + 1 === items.length
+                ? "right"
+                : // If the item is not in the first or last position, give the
+                  // item the center border styling
+                  "center"
+            }
+          >
+            {item}
+          </Label>
+        </FilterContainer>
+      ))}
+    </FilterGroupWrapper>
   );
 };
 
