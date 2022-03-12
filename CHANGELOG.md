@@ -92,3 +92,39 @@ Added Search Primary Story
 ### Pre-release Highlights
 
 Added Popup Story
+
+## 0.2.5 (2022-03-04)
+
+### Pre-release Highlights
+
+Added Island Story
+
+## 0.2.6 (2022-03-04)
+
+### Pre-release Highlights
+
+Added Select Story
+
+## 0.2.7 (2022-03-05)
+
+### Pre-release Highlights
+
+Added Input Tag Story
+
+## 0.2.8 (2022-03-05)
+
+### Pre-release Highlights
+
+Added Select Tag Story
+
+## 0.2.9 (2022-03-06)
+
+### Pre-release Highlights
+
+Updated Badge Story
+
+### 0.3.0 (2022-03-12)
+
+### Pre-release Highlights
+
+Updated Avatar Story
