@@ -5,7 +5,7 @@ import {
   Head,
   Description,
   CloseButton,
-  HelpLink,
+  HelpButton,
   StateSymbolWrapper,
   DoneIcon,
   CloseIcon,
@@ -23,34 +23,26 @@ export const Notification = ({
   closeLabel,
   helpLabel,
 }) => {
-  let icon;
-  // TODO: JH2021_12_19
-  // ? try to do this with switches that don't return someething, but just assign
-  if (notificationState === "success") icon = <DoneIcon />;
-  if (notificationState === "error") icon = <CloseIcon />;
-  if (notificationState === "info") icon = <InfoIcon />;
-  if (notificationState === "default") icon = <></>;
-
   return (
-    <div>
-      <NotificationContainer showButtons={showButtons}>
-        <FlexTopRow>
-          <div>
-            {showHead && <Head>{head}</Head>}
-            {showDescription && <Description>{description}</Description>}
-          </div>
-          <StateSymbolWrapper notificationState={notificationState}>
-            {icon}
-          </StateSymbolWrapper>
-        </FlexTopRow>
-        {showButtons && (
-          <FlexBottomRow>
-            <CloseButton>{closeLabel}</CloseButton>
-            <HelpLink href="#">{helpLabel}</HelpLink>
-          </FlexBottomRow>
-        )}
-      </NotificationContainer>
-    </div>
+    <NotificationContainer showButtons={showButtons}>
+      <FlexTopRow>
+        <div>
+          {showHead && <Head>{head}</Head>}
+          {showDescription && <Description>{description}</Description>}
+        </div>
+        <StateSymbolWrapper notificationState={notificationState}>
+          {notificationState === "success" && <DoneIcon />}
+          {notificationState === "error" && <CloseIcon />}
+          {notificationState === "info" && <InfoIcon />}
+        </StateSymbolWrapper>
+      </FlexTopRow>
+      {showButtons && (
+        <FlexBottomRow>
+          <CloseButton>{closeLabel}</CloseButton>
+          <HelpButton>{helpLabel}</HelpButton>
+        </FlexBottomRow>
+      )}
+    </NotificationContainer>
   );
 };
 
