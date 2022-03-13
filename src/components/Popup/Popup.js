@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   PopupContainer,
   Head,
@@ -22,42 +21,44 @@ const Popup = ({
   description,
   buttonOneLabel,
   buttonTwoLabel,
-  closeState,
+  handleClose,
+  handleButton1,
+  handleButton2,
 }) => {
-  const [close, setClose] = useState(false);
-
   return (
-    <>
-      {!close ? (
-        <PopupContainer>
-          <CloseIconWrapper>
-            <CloseIcon
-              onClick={() => {
-                setClose(true);
-              }}
-            ></CloseIcon>
-          </CloseIconWrapper>
-          <IconBackground popupState={popupState}>
-            {popupState === "alert" && <AlertIcon />}
-            {popupState === "success" && <SuccessIcon />}
-            {popupState === "error" && <ErrorIcon />}
-            {popupState === "contact" && <></>}
-          </IconBackground>
-          <Head>{head}</Head>
-          <Description>{description}</Description>
-          {!(popupState == "error") && (
-            <ButtonWrapper>
-              <Button buttonType="label" label={buttonOneLabel}></Button>
-              {popupState == "alert" && (
-                <Button buttonType="label" label={buttonTwoLabel}></Button>
-              )}
-            </ButtonWrapper>
+    <PopupContainer>
+      <CloseIconWrapper>
+        <CloseIcon
+          onClick={(e) => {
+            handleClose(e);
+          }}
+        ></CloseIcon>
+      </CloseIconWrapper>
+      <IconBackground popupState={popupState}>
+        {popupState === "alert" && <AlertIcon />}
+        {popupState === "success" && <SuccessIcon />}
+        {popupState === "error" && <ErrorIcon />}
+        {popupState === "contact" && <></>}
+      </IconBackground>
+      <Head>{head}</Head>
+      <Description>{description}</Description>
+      {!(popupState === "error") && (
+        <ButtonWrapper>
+          <Button
+            buttonType="label"
+            label={buttonOneLabel}
+            onClick={(e) => handleButton1(e)}
+          ></Button>
+          {popupState === "alert" && (
+            <Button
+              buttonType="label"
+              label={buttonTwoLabel}
+              onClick={(e) => handleButton2(e)}
+            ></Button>
           )}
-        </PopupContainer>
-      ) : (
-        <></>
+        </ButtonWrapper>
       )}
-    </>
+    </PopupContainer>
   );
 };
 

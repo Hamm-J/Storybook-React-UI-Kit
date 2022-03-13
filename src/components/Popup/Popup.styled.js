@@ -4,10 +4,9 @@ import { Close, Done, PriorityHigh } from "@styled-icons/material";
 export const PopupContainer = styled.div`
   width: 480px;
   border-radius: 8px;
-  box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
-    0px 4px 16px rgba(51, 51, 51, 0.08);
+  box-shadow: ${(props) => props.theme.shadowDefault};
+  box-sizing: border-box;
   padding: 29px 25px;
-
   position: relative;
   display: flex;
   flex-direction: column;
@@ -17,15 +16,21 @@ export const PopupContainer = styled.div`
 `;
 
 export const Head = styled.h1`
-  font-size: 32px;
-  line-height: 40px;
+  font: ${(props) => props.theme.fontHeading4};
   margin: 0;
   padding: 0;
+  word-wrap: break-word;
+  inline-size: 290px;
+  text-align: center;
 `;
 
 export const Description = styled.p`
-  font-size: 16px;
-  line-height: 24px;
+  font: ${(props) => props.theme.fontParagraph2};
+  margin: 0;
+  padding: 0;
+  word-wrap: break-word;
+  inline-size: 290px;
+  text-align: center;
 `;
 
 export const ButtonWrapper = styled.div`
@@ -42,7 +47,9 @@ export const CloseIconWrapper = styled.div`
   right: 10px;
   width: 44px;
   height: 44px;
-  background-color: #6e41e2;
+  background-color: ${(props) => props.theme.backgroundColor};
+  border: 2px solid ${(props) => props.theme.borderColor};
+  box-shadow: ${(props) => props.theme.boxShadow};
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -51,23 +58,23 @@ export const CloseIconWrapper = styled.div`
 `;
 
 export const CloseIcon = styled(Close)`
-  color: white;
+  color: ${(props) => props.theme.color};
   width: 45%;
   cursor: pointer;
 `;
 
 export const SuccessIcon = styled(Done)`
-  color: #27ae60;
+  color: ${(props) => props.theme.colorGreen};
   width: 60%;
 `;
 
 export const ErrorIcon = styled(Close)`
-  color: #db524e;
+  color: ${(props) => props.theme.colorSuperRed};
   width: 60%;
 `;
 
 export const AlertIcon = styled(PriorityHigh)`
-  color: #ffd912;
+  color: ${(props) => props.theme.colorStar};
   width: 60%;
 `;
 
@@ -75,17 +82,17 @@ export const IconBackground = styled.div`
   background-color: ${(props) => {
     switch (props.popupState) {
       case "alert":
-        return "rgba(255, 217, 18, 0.12)";
+        return (props) => props.theme.colorYellow;
       case "success":
-        return "rgba(39,174,96, 0.12)";
+        return (props) => props.theme.colorGreenLight;
       case "error":
-        return "rgba(219,82,78, 0.12)";
+        return (props) => props.theme.colorRedGirl;
       case "contact":
+        return "white";
+      default:
         return "white";
     }
   }};
-  /* rgba(255, 217, 18, 0.12); */
-  /* opacity: 0.12; */
   display: flex;
   justify-content: center;
   align-items: center;
