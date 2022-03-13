@@ -43,7 +43,7 @@ export const themePrimaryWhite = {
   name: "Primary White",
   // background values
   backgroundColor: colors.colorWhite,
-  backgroundColorHover: colors.colorWhiteS,
+  backgroundColorHover: "rgba(110, 65, 226, 0.04)",
   backgroundColorActive: colors.colorWhite,
   backgroundColorDisabled: "rgba(255, 255, 255, 0.34)",
   // font values
