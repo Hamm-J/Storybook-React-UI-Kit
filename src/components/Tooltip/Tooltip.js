@@ -13,13 +13,13 @@ import PropTypes from "prop-types";
 const Tooltip = ({ tooltipState, label }) => {
   return (
     <TooltipContainer>
-      {tooltipState == "sideLeft" && <PointerSideLeft></PointerSideLeft>}
-      {tooltipState == "topLeft" && <PointerTopLeft></PointerTopLeft>}
-      {tooltipState == "bottomLeft" && <PointerBottomLeft></PointerBottomLeft>}
+      {tooltipState === "sideLeft" && <PointerSideLeft></PointerSideLeft>}
+      {tooltipState === "topLeft" && <PointerTopLeft></PointerTopLeft>}
+      {tooltipState === "bottomLeft" && <PointerBottomLeft></PointerBottomLeft>}
       <Label>{label}</Label>
-      {tooltipState == "sideRight" && <PointerSideRight></PointerSideRight>}
-      {tooltipState == "topRight" && <PointerTopRight></PointerTopRight>}
-      {tooltipState == "bottomRight" && (
+      {tooltipState === "sideRight" && <PointerSideRight></PointerSideRight>}
+      {tooltipState === "topRight" && <PointerTopRight></PointerTopRight>}
+      {tooltipState === "bottomRight" && (
         <PointerBottomRight></PointerBottomRight>
       )}
     </TooltipContainer>
