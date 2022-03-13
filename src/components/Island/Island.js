@@ -14,12 +14,22 @@ import {
   TopWrapper,
   ProgressBar,
   ProgressBarLabel,
+  Button,
+  Badge,
 } from "./Island.styled";
 import PropTypes from "prop-types";
-import Button from "../Button/Button";
-import Badge from "../Badge/Badge";
 
-const Island = ({ head, description, progressBar, progressBarValue }) => {
+const Island = ({
+  head,
+  description,
+  progressBar,
+  progressBarValue,
+  badgeLabel,
+  buttonLabel,
+  handleButton,
+  handleParams1,
+  handleParams2,
+}) => {
   return (
     <IslandContainer>
       <CornerCircle />
@@ -28,14 +38,14 @@ const Island = ({ head, description, progressBar, progressBarValue }) => {
           <ProgressBar value={progressBarValue} max="100" id="progress-bar">
             {progressBarValue}
           </ProgressBar>
-          <ProgressBarLabel for="progress-bar">
+          <ProgressBarLabel htmlFor="progress-bar">
             Progress {progressBarValue}%
           </ProgressBarLabel>
         </>
       )}
       <TopWrapper>
         <TextWrapper progressBar={progressBar}>
-          <Badge label="Your Text"></Badge>
+          <Badge>{badgeLabel}</Badge>
           <Head>{head}</Head>
           <Description>{description}</Description>
         </TextWrapper>
@@ -46,11 +56,11 @@ const Island = ({ head, description, progressBar, progressBarValue }) => {
         </SymbolWrapper>
       </TopWrapper>
       <ButtonWrapper>
-        <Button buttonType="label" label="Button"></Button>
-        <Link>
+        <Button onClick={(e) => handleButton(e)}>{buttonLabel}</Button>
+        <Link onClick={(e) => handleParams1(e)}>
           <CapIcon /> Params
         </Link>
-        <Link>
+        <Link onClick={(e) => handleParams2(e)}>
           <PenIcon />
           Params
         </Link>
@@ -64,6 +74,8 @@ Island.propTypes = {
   description: PropTypes.string,
   progressBar: PropTypes.bool,
   progressBarValue: PropTypes.number,
+  badgeLabel: PropTypes.string,
+  buttonLabel: PropTypes.string,
 };
 
 export default Island;
