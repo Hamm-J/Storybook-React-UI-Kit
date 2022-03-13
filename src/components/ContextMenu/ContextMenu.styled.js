@@ -1,42 +1,40 @@
 import styled from "styled-components";
 import { Done } from "@styled-icons/material";
 
-export const MenuWrapper = styled.div`
+export const MenuContainer = styled.div`
   width: 244px;
-  box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
-    0px 4px 24px rgba(51, 51, 51, 0.24);
+  height: fit-content;
+  background-color: ${(props) => props.theme.colorWhite};
+  box-shadow: ${(props) => props.theme.shadowDefault};
+  padding-top: 8px;
+  padding-bottom: 8px;
 `;
-export const MenuItemRow = styled.div`
+export const ItemRow = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 40px;
   padding-left: 12px;
+  cursor: pointer;
 
   &:hover {
-    background-color: #f1f1f1;
-    cursor: pointer;
+    background-color: ${(props) => props.theme.colorGrayL};
   }
 `;
 
-export const MenuItemLabel = styled.label`
-  &:hover {
-    cursor: pointer;
-  }
+export const ItemLabel = styled.label`
+  font: ${(props) => props.theme.fontParagraph2};
+  cursor: pointer;
 `;
 
-export const MenuSectionTitle = styled.div`
+export const SectionTitle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 40px;
   padding-left: 12px;
-  background-color: #fafafa;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 20px;
+  background-color: ${(props) => props.theme.colorGrayM};
+  font: ${(props) => props.theme.fontParagraph3};
 `;
 
 export const DoneIcon = styled(Done)`

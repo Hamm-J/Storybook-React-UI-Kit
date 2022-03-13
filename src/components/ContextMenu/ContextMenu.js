@@ -1,9 +1,9 @@
 import { useState } from "react";
 import {
-  MenuWrapper,
-  MenuItemRow,
-  MenuItemLabel,
-  MenuSectionTitle,
+  MenuContainer,
+  ItemRow,
+  ItemLabel,
+  SectionTitle,
   DoneIcon,
 } from "./ContextMenu.styled";
 import PropTypes from "prop-types";
@@ -16,46 +16,50 @@ const ContextMenu = ({ multipleLists, countryItems, timeItems }) => {
   const [selectedTime, setSelectedTime] = useState(arrayOfFalse);
 
   const selectCountry = (oldBool, index) => {
-    let newArray = arrayOfFalse; // create an array of false values
-    newArray[index] = !oldBool; //Adjusting the value you want flipped.
-    setSelectedCountry(newArray.map((x) => x)); //Updating the state with these new values.
+    // create an array of false values
+    let newArray = arrayOfFalse;
+    // Adjust the value you want flipped.
+    newArray[index] = !oldBool;
+    // Update the state with these new values.
+    setSelectedCountry(newArray.map((x) => x));
   };
 
   const selectTime = (oldBool, index) => {
-    let newArray = arrayOfFalse; // create an array of false values
-    newArray[index] = !oldBool; //Adjusting the value you want flipped.
-    setSelectedTime(newArray.map((x) => x)); //Updating the state with these new values.
+    // create an array of false values
+    let newArray = arrayOfFalse;
+    // Adjust the value you want flipped.
+    newArray[index] = !oldBool;
+    // Update the state with these new values.
+    setSelectedTime(newArray.map((x) => x));
   };
 
   return (
-    <div>
-      <MenuWrapper>
-        {multipleLists && <MenuSectionTitle>Time</MenuSectionTitle>}
-        {timeItems.map((item, itemIdx) => (
-          <MenuItemRow
-            key={itemIdx}
-            onClick={() => selectTime(selectedTime[itemIdx], itemIdx)}
-          >
-            <MenuItemLabel>{item}</MenuItemLabel>
-            {selectedTime[itemIdx] === true && <DoneIcon />}
-          </MenuItemRow>
-        ))}
-        {multipleLists && <MenuSectionTitle>Country</MenuSectionTitle>}
-        {multipleLists && (
-          <>
-            {countryItems.map((item, itemIdx) => (
-              <MenuItemRow
-                key={itemIdx}
-                onClick={() => selectCountry(selectedCountry[itemIdx], itemIdx)}
-              >
-                <MenuItemLabel>{item}</MenuItemLabel>
-                {selectedCountry[itemIdx] === true && <DoneIcon />}
-              </MenuItemRow>
-            ))}
-          </>
-        )}
-      </MenuWrapper>
-    </div>
+    <MenuContainer>
+      {multipleLists && <SectionTitle>Time</SectionTitle>}
+      {timeItems.map((item, itemIdx) => (
+        <ItemRow
+          key={itemIdx}
+          onClick={() => selectTime(selectedTime[itemIdx], itemIdx)}
+        >
+          <ItemLabel>{item}</ItemLabel>
+          {selectedTime[itemIdx] === true && <DoneIcon />}
+        </ItemRow>
+      ))}
+      {multipleLists && <SectionTitle>Country</SectionTitle>}
+      {multipleLists && (
+        <>
+          {countryItems.map((item, itemIdx) => (
+            <ItemRow
+              key={itemIdx}
+              onClick={() => selectCountry(selectedCountry[itemIdx], itemIdx)}
+            >
+              <ItemLabel>{item}</ItemLabel>
+              {selectedCountry[itemIdx] === true && <DoneIcon />}
+            </ItemRow>
+          ))}
+        </>
+      )}
+    </MenuContainer>
   );
 };
 

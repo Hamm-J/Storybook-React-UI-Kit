@@ -10,6 +10,6 @@ const Template = (args) => <ContextMenu {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
   multipleLists: false,
-  countryItems: ["Russia", "USA", "Germany"],
+  countryItems: ["Canada", "USA", "Germany"],
   timeItems: ["Days", "Weeks", "Years"],
 };
