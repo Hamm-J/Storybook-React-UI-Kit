@@ -6,19 +6,34 @@ export const NotificationContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  width: 374px;
-  height: ${(props) => (props.showButtons === true ? "144px" : "80px")};
-  /* TODO: JH2021_12_19: look into adjusting height according to padding*/
-  padding: 20px;
+  width: 396px;
+  max-height: fit-content;
+  box-sizing: border-box;
   box-shadow: ${(props) => props.theme.shadowDefault};
 `;
 
 export const FlexTopRow = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
+  // change flex direction and styling depending on if the state is mobile.
+  // Stack the components in mobile with the state symbol on top
+  flex-direction: ${(props) =>
+    props.notificationState === "mobile" ? "column-reverse" : "row"};
+  justify-content: ${(props) =>
+    props.notificationState === "mobile" ? "flex-start" : "space-between"};
+  align-items: flex-start;
+
+  ${(props) =>
+    !props.showHead &&
+    props.notificationState !== "mobile" &&
+    css`
+      align-items: center;
+    `}
+
+  // addjust padding depending on if the state of showButtons and showDescription
+  padding: ${(props) =>
+    props.showButtons === true && props.showDescription === false
+      ? "20px 20px 0 20px"
+      : "20px 20px 20px 20px"};
 `;
 
 export const FlexBottomRow = styled.div`
@@ -26,21 +41,28 @@ export const FlexBottomRow = styled.div`
   flex-direction: row;
   align-items: center;
   height: 100%;
+  padding: 0px 20px 20px 20px;
 `;
 
 export const Head = styled.p`
   font: ${(props) => props.theme.fontParagraph1Bold};
+  overflow-wrap: break-word;
+  inline-size: 275px;
+  margin: 8px 0px 8px 0px;
 `;
 
 export const Description = styled.p`
   font: ${(props) => props.theme.fontParagraph2};
+  overflow-wrap: break-word;
+  inline-size: 275px;
+  margin: 0px;
 `;
 
 export const CloseButton = styled.button`
   cursor: pointer;
   background-color: ${(props) => props.theme.colorWhite};
   border: none;
-  outline: 2px solid ${(props) => props.theme.colorPrimary};
+  border: 2px solid ${(props) => props.theme.colorPrimary};
   border-radius: 4px;
   padding: 10px 20px;
   color: ${(props) => props.theme.colorPrimary};
@@ -61,6 +83,8 @@ export const StateSymbolWrapper = styled.div`
   background-color: ${(props) => {
     switch (props.notificationState) {
       case "success":
+        return (props) => props.theme.colorGreenLight;
+      case "mobile":
         return (props) => props.theme.colorGreenLight;
       case "error":
         return (props) => props.theme.colorRedGirl;

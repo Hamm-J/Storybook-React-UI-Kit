@@ -22,24 +22,36 @@ export const Notification = ({
   showDescription,
   closeLabel,
   helpLabel,
+  handleClose,
+  handleHelp,
 }) => {
   return (
     <NotificationContainer showButtons={showButtons}>
-      <FlexTopRow>
+      <FlexTopRow
+        notificationState={notificationState}
+        showHead={showHead}
+        showDescription={showDescription}
+        showButtons={showButtons}
+      >
         <div>
           {showHead && <Head>{head}</Head>}
-          {showDescription && <Description>{description}</Description>}
+          {showDescription && (
+            <Description showHead={showHead}>{description}</Description>
+          )}
         </div>
         <StateSymbolWrapper notificationState={notificationState}>
-          {notificationState === "success" && <DoneIcon />}
+          {(notificationState === "success" ||
+            notificationState === "mobile") && <DoneIcon />}
           {notificationState === "error" && <CloseIcon />}
           {notificationState === "info" && <InfoIcon />}
         </StateSymbolWrapper>
       </FlexTopRow>
       {showButtons && (
         <FlexBottomRow>
-          <CloseButton>{closeLabel}</CloseButton>
-          <HelpButton>{helpLabel}</HelpButton>
+          <CloseButton onClick={(e) => handleClose(e)}>
+            {closeLabel}
+          </CloseButton>
+          <HelpButton onClick={(e) => handleHelp(e)}>{helpLabel}</HelpButton>
         </FlexBottomRow>
       )}
     </NotificationContainer>
@@ -47,7 +59,7 @@ export const Notification = ({
 };
 
 Notification.propTypes = {
-  notificationState: PropTypes.oneOf(["default", "success", "error", "info"]),
+  notificationState: PropTypes.oneOf(["success", "error", "info", "mobile"]),
   showButtons: PropTypes.bool,
   showHead: PropTypes.bool,
   showDescription: PropTypes.bool,
