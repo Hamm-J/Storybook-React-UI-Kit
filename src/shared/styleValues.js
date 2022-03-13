@@ -16,6 +16,9 @@ export const colors = {
   colorRed: "#DB524E",
   colorSuperRed: "#C7302B",
   colorGreen: "#27AE60",
+  colorGreenLight: "#CBECD9",
+  colorYellow: "#FFF5C0",
+  colorStar: "#FFD912",
   colorBlue: "#428BF9",
 };
 
