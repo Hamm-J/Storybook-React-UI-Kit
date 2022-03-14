@@ -10,5 +10,5 @@ const Template = (args) => <Select {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
   label: "Your country",
-  results: ["USA", "Russia", "Germany"],
+  results: ["USA", "Canada", "Germany"],
 };

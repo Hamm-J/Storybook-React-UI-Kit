@@ -3,7 +3,7 @@ import {
   SelectContainer,
   SelectWrapper,
   InputField,
-  InputLabel,
+  Label,
   CloseIcon,
   ArrowIcon,
   DoneIcon,
@@ -17,31 +17,36 @@ const Select = ({ label, results }) => {
   const [resultsWindow, setResultsWindow] = useState(false);
   const [closeButton, setCloseButton] = useState(false);
   const arrayOfFalse = new Array(results.length).fill(false);
-  const [selectedResult, setSelectedResults] = useState(arrayOfFalse);
+  const [selectedResult, setSelectedResult] = useState(arrayOfFalse);
   const [selectedResultValue, setSelectedResultValue] = useState("");
+  const [inputValue, setInputValue] = useState("");
   const inputRef = useRef();
 
   const selectResult = (e, index, value) => {
-    e.preventDefault();
+    if (e.key === "Enter" || e.type === "mousedown") {
+      e.preventDefault();
 
-    setSelectedResultValue(value);
-    let newArray = arrayOfFalse;
-    // toggle the checkmark for the selected item
-    newArray[index] = true;
-    setSelectedResults(newArray.map((x) => x));
+      setSelectedResultValue(value);
+      let newArray = arrayOfFalse;
+      // toggle the checkmark for the selected item
+      newArray[index] = true;
+      setSelectedResult(newArray.map((x) => x));
 
-    if (selectedResult !== arrayOfFalse) {
-      // set the input to the seleted result
-      inputRef.current.value = value;
-      // show the closeButton because inputRef will not cause a render for
-      // handleInput, and in turn, not show the closeButton
-      setCloseButton(true);
+      if (selectedResult !== arrayOfFalse) {
+        // set the input to the seleted result
+        setInputValue(value);
+        // show the closeButton because inputRef will not cause a render for
+        // handleInput, and in turn, not show the closeButton
+        setCloseButton(true);
+      }
     }
   };
 
   const handleInput = (e) => {
+    const { value } = e.target;
+    setInputValue(value);
     // if the input field has text, show the results window and the close button
-    if (e.target.value.length > 0) {
+    if (value.length > 0) {
       setResultsWindow(true);
       setCloseButton(true);
       // else hide the results window and the close button
@@ -49,23 +54,25 @@ const Select = ({ label, results }) => {
       setResultsWindow(false);
       setCloseButton(false);
     }
-    if (e.target.value !== selectedResultValue) {
+    if (value !== selectedResultValue) {
       setResultsWindow(true);
-      setSelectedResults(arrayOfFalse);
+      setSelectedResult(arrayOfFalse);
+    } else {
+      setResultsWindow(false);
     }
   };
 
   const handleClose = () => {
     // reset selected result on close
-    setSelectedResults(arrayOfFalse);
+    setSelectedResult(arrayOfFalse);
     // hide results window on close
     setResultsWindow(false);
     // hide the close button on close
     setCloseButton(false);
     // set the input value to blank
-    inputRef.current.value = "";
+    setInputValue("");
     // target the inputfield with the cursor
-    inputRef.current.blur();
+    inputRef.current.focus();
   };
 
   const handleArrow = (e) => {
@@ -78,23 +85,24 @@ const Select = ({ label, results }) => {
     <SelectContainer>
       <SelectWrapper>
         <InputField
-          className="input__field"
-          id="input__field"
+          className="input-field"
+          id="input-field"
           ref={inputRef}
-          onChange={handleInput}
+          onChange={(e) => handleInput(e)}
           placeholder=" "
+          value={inputValue}
           onFocus={(e) => {
             e.target.placeholder = "Example, USA";
             setResultsWindow(true);
           }}
           onBlur={(e) => {
             e.target.placeholder = " ";
-            setResultsWindow(false);
+            // setResultsWindow(false);
           }}
         />
-        <InputLabel className="input__label" for="input_field">
+        <Label className="label" htmlFor="input-field">
           {label}
-        </InputLabel>
+        </Label>
         {closeButton && <CloseIcon onClick={() => handleClose()} />}
         <ArrowIcon
           resultsWindow={resultsWindow}
@@ -112,6 +120,8 @@ const Select = ({ label, results }) => {
                 // before onBlur. This is needed to make resultsWindow state
                 // to operate as intended when selecting a result.
                 onMouseDown={(e) => selectResult(e, resultIdx, result)}
+                tabIndex="0"
+                onKeyDown={(e) => selectResult(e, resultIdx, result)}
               >
                 <ResultText>{result}</ResultText>
                 {selectedResult[resultIdx] === true && <DoneIcon />}
