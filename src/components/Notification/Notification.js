@@ -5,7 +5,7 @@ import {
   Head,
   Description,
   CloseButton,
-  HelpLink,
+  HelpButton,
   StateSymbolWrapper,
   DoneIcon,
   CloseIcon,
@@ -22,40 +22,44 @@ export const Notification = ({
   showDescription,
   closeLabel,
   helpLabel,
+  handleClose,
+  handleHelp,
 }) => {
-  let icon;
-  // TODO: JH2021_12_19
-  // ? try to do this with switches that don't return someething, but just assign
-  if (notificationState === "success") icon = <DoneIcon />;
-  if (notificationState === "error") icon = <CloseIcon />;
-  if (notificationState === "info") icon = <InfoIcon />;
-  if (notificationState === "default") icon = <></>;
-
   return (
-    <div>
-      <NotificationContainer showButtons={showButtons}>
-        <FlexTopRow>
-          <div>
-            {showHead && <Head>{head}</Head>}
-            {showDescription && <Description>{description}</Description>}
-          </div>
-          <StateSymbolWrapper notificationState={notificationState}>
-            {icon}
-          </StateSymbolWrapper>
-        </FlexTopRow>
-        {showButtons && (
-          <FlexBottomRow>
-            <CloseButton>{closeLabel}</CloseButton>
-            <HelpLink href="#">{helpLabel}</HelpLink>
-          </FlexBottomRow>
-        )}
-      </NotificationContainer>
-    </div>
+    <NotificationContainer showButtons={showButtons}>
+      <FlexTopRow
+        notificationState={notificationState}
+        showHead={showHead}
+        showDescription={showDescription}
+        showButtons={showButtons}
+      >
+        <div>
+          {showHead && <Head>{head}</Head>}
+          {showDescription && (
+            <Description showHead={showHead}>{description}</Description>
+          )}
+        </div>
+        <StateSymbolWrapper notificationState={notificationState}>
+          {(notificationState === "success" ||
+            notificationState === "mobile") && <DoneIcon />}
+          {notificationState === "error" && <CloseIcon />}
+          {notificationState === "info" && <InfoIcon />}
+        </StateSymbolWrapper>
+      </FlexTopRow>
+      {showButtons && (
+        <FlexBottomRow>
+          <CloseButton onClick={(e) => handleClose(e)}>
+            {closeLabel}
+          </CloseButton>
+          <HelpButton onClick={(e) => handleHelp(e)}>{helpLabel}</HelpButton>
+        </FlexBottomRow>
+      )}
+    </NotificationContainer>
   );
 };
 
 Notification.propTypes = {
-  notificationState: PropTypes.oneOf(["default", "success", "error", "info"]),
+  notificationState: PropTypes.oneOf(["success", "error", "info", "mobile"]),
   showButtons: PropTypes.bool,
   showHead: PropTypes.bool,
   showDescription: PropTypes.bool,
