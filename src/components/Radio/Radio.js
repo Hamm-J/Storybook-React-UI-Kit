@@ -1,7 +1,7 @@
 import {
-  RadioWrapper,
+  RadioContainer,
   InputField,
-  RadioLabel,
+  Label,
   RadioGroupWrapper,
 } from "./Radio.styled";
 import PropTypes from "prop-types";
@@ -22,17 +22,17 @@ const Radio = ({
   return (
     <RadioGroupWrapper radioGroupDirection={radioGroupDirection}>
       {radioButtonArray.map((radioId, radioIdIdx) => (
-        <RadioWrapper key={radioIdIdx} className="radio__wrapper">
+        <RadioContainer key={radioIdIdx} className="radio-container">
           <InputField
-            className="input__field"
+            className="input-field"
             name={radioGroup}
             id={radioId}
-            disabled={radioState === "disabled" ? true : false}
+            disabled={radioState === "disabled"}
           />
-          <RadioLabel className="radio__label" for={radioId}>
+          <Label className="label" htmlFor={radioId}>
             {`label ${radioIdIdx + 1}`}
-          </RadioLabel>
-        </RadioWrapper>
+          </Label>
+        </RadioContainer>
       ))}
     </RadioGroupWrapper>
   );
