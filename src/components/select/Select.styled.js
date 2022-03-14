@@ -65,8 +65,10 @@ export const Result = styled.div`
   padding: 8px 16px 8px 16px;
   height: 24px;
   cursor: pointer;
+  outline: none;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: ${(props) => props.theme.colorGrayL};
   }
 `;
@@ -77,7 +79,7 @@ export const ResultText = styled.span`
 
 export const Label = styled.label`
   position: absolute;
-  top: 20px;
+  top: 16px;
   left: 16px;
   color: ${(props) => props.theme.colorGray};
   cursor: text;
