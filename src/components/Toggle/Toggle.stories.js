@@ -3,6 +3,9 @@ import Toggle from "./Toggle";
 export default {
   title: "Components/Toggle",
   component: Toggle,
+  argTypes: {
+    handleToggle: { action: "handleToggle" },
+  },
 };
 
 const Template = (args) => <Toggle {...args} />;

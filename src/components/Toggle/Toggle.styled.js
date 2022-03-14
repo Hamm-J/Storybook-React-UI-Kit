@@ -6,13 +6,13 @@ export const ToggleContainer = styled.div`
   display: flex;
 `;
 
-export const FlexWrapperLeft = styled.div`
+export const ToggleWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 `;
 
-export const FlexWrapperRight = styled.div`
+export const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -20,16 +20,16 @@ export const FlexWrapperRight = styled.div`
   padding-left: 8px;
 `;
 
-export const ToggleHead = styled.p`
-  color: black;
+export const Head = styled.p`
+  color: ${(props) => props.theme.colorBlack};
+  font: ${(props) => props.theme.fontParagraph2};
   margin: 0;
   padding: 0;
-  padding-top: 3px;
 `;
 
-export const ToggleDescription = styled.p`
-  color: rgba(17, 17, 17, 0.48);
-  font-size: 13px;
+export const Description = styled.p`
+  color: ${(props) => props.theme.colorGray};
+  font: ${(props) => props.theme.fontParagraph3};
   margin: 0;
   padding: 0;
 `;
@@ -38,50 +38,51 @@ export const CheckboxField = styled.input.attrs({ type: "checkbox" })`
   position: absolute;
   opacity: 0;
 
-  &:checked ~ .toggle__label:before {
+  &:checked ~ .label:before {
     left: 26px;
-    background-color: white;
+    background-color: ${(props) => props.theme.colorWhite};
   }
 
-  &:checked ~ .toggle__label {
-    background-color: #6e41e2;
-    border-color: #6e41e2;
+  &:checked ~ .label {
+    background-color: ${(props) => props.theme.backgroundColor};
+    border-color: ${(props) => props.theme.backgroundColor};
   }
 
-  &:not(:disabled):not(:checked) ~ .toggle__label:hover:before {
-    background-color: #5835b0;
+  &:not(:disabled):not(:checked) ~ .label:hover:before {
+    background-color: ${(props) => props.theme.backgroundColorHover};
   }
 
-  &:checked:not(:disabled) ~ .toggle__label:hover {
-    background-color: #5835b0;
+  &:checked:not(:disabled) ~ .label:hover {
+    background-color: ${(props) => props.theme.backgroundColorHover};
   }
 
-  &:focus ~ .toggle__label {
-    border: 2px solid rgba(17, 17, 17, 0.48);
+  &:focus ~ .label {
+    border: 2px solid ${(props) => props.theme.borderColorFocus};
   }
 
-  &:disabled ~ .toggle__label,
-  &:disabled ~ .toggle__label:after {
+  &:disabled ~ .label,
+  &:disabled ~ .label:after {
     opacity: 0.56;
     cursor: not-allowed;
   }
 
-  &:disabled:checked ~ .toggle__label:after {
+  &:disabled:checked ~ .label:after {
     opacity: 0;
   }
 `;
 
-export const ToggleLabel = styled.label`
+export const Label = styled.label`
   display: flex;
   align-items: center;
   position: relative;
   cursor: pointer;
   width: 48px;
   height: 24px;
-  background: rgba(255, 255, 255, 0.88);
-  border: 2px solid #e3daf9;
+  background-color: ${(props) => props.theme.colorWhiteS};
+  border: 2px solid ${(props) => props.theme.borderColorDisabled};
   box-sizing: border-box;
   border-radius: 100px;
+  box-shadow: ${(props) => props.theme.boxShadow};
 
   /* Slider */
   &:before {
@@ -91,7 +92,7 @@ export const ToggleLabel = styled.label`
     display: block;
     width: 16px;
     height: 16px;
-    background-color: #6e41e2;
+    background-color: ${(props) => props.theme.backgroundColor};
     border-radius: 50%;
     transition: 100ms;
     z-index: 1;
@@ -106,7 +107,7 @@ export const ToggleLabel = styled.label`
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    border: 2px solid #e3daf9;
+    border: 2px solid ${(props) => props.theme.borderColorDisabled};
   }
 `;
 
@@ -114,5 +115,5 @@ export const OnIcon = styled(Done)`
   position: absolute;
   left: 4px;
   width: 16px;
-  color: white;
+  color: ${(props) => props.theme.color};
 `;
