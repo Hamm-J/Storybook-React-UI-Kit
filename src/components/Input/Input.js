@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import {
+  InputContainer,
   InputField,
-  InputLabel,
-  InputMessage,
-  InputWrapper,
+  Label,
+  Message,
   DoneIcon,
 } from "./Input.styled";
 
@@ -15,7 +15,12 @@ const Input = ({
   descriptionMessage,
 }) => {
   const [inputValue, setInputValue] = useState("");
-  
+  const inputRef = useRef();
+
+  const focusInput = () => {
+    inputRef.current.focus();
+  };
+
   if (
     (inputValue === "" && inputState === "success") ||
     (inputValue === "" && inputState === "autofill")
@@ -24,36 +29,31 @@ const Input = ({
   }
 
   return (
-    <InputWrapper className="inputWrapper" inputState={inputState}>
+    <InputContainer
+      className="input-container"
+      inputState={inputState}
+      onClick={() => focusInput()}
+    >
       <InputField
-        className="input__field"
-        id="inputId"
-        placeholder=""
+        className="input-field"
+        id="input-id"
+        placeholder=" "
         value={inputValue}
-        onChange={(event) => setInputValue(event.target.value)}
+        onChange={(e) => setInputValue(e.target.value)}
         disabled={inputState === "disabled" ? true : false}
+        ref={inputRef}
       />
-      <InputLabel className="input__label" for="inputId">
+      <Label className="label" htmlFor="input-id">
         {label}
-      </InputLabel>
-      {inputState === "success" || inputState === "autofill" ? (
-        <DoneIcon />
-      ) : (
-        <></>
+      </Label>
+      {(inputState === "success" || inputState === "autofill") && <DoneIcon />}
+      {inputState === "error" && (
+        <Message inputState={inputState}>{errorMessage}</Message>
       )}
-      {inputState === "error" ? (
-        <InputMessage inputState={inputState}>{errorMessage}</InputMessage>
-      ) : (
-        <></>
+      {inputState === "description" && (
+        <Message inputState={inputState}>{descriptionMessage}</Message>
       )}
-      {inputState === "description" ? (
-        <InputMessage inputState={inputState}>
-          {descriptionMessage}
-        </InputMessage>
-      ) : (
-        <></>
-      )}
-    </InputWrapper>
+    </InputContainer>
   );
 };
 Input.propTypes = {
@@ -65,6 +65,7 @@ Input.propTypes = {
     "success",
     "autofill",
     "description",
+    "readonly",
   ]),
   errorMessage: PropTypes.string,
   descriptionMessage: PropTypes.string,

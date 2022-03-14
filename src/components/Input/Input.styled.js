@@ -1,94 +1,86 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Done } from "@styled-icons/material";
 
-export const InputWrapper = styled.div`
+export const InputContainer = styled.div`
   background-color: ${(props) => {
     switch (props.inputState) {
       case "error":
-        return "#F9E3E3";
+        return (props) => props.theme.colorRedGirl;
       case "success":
-        return "#CBECD9";
+        return (props) => props.theme.colorGreenLight;
       case "autofill":
-        return "#FFF5C0";
+        return (props) => props.theme.colorYellow;
       default:
-        return "#FFFFFF";
+        return (props) => props.theme.colorWhite;
     }
   }};
   position: relative;
   width: 482px;
   height: 56px;
   border-radius: 2px;
-  box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
-    0px 4px 16px rgba(51, 51, 51, 0.08);
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  box-shadow: ${(props) => props.theme.shadowDefault};
+  cursor: text;
+
+  ${(props) =>
+    !(props.inputState === "readonly") &&
+    css`
+      filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    `};
+
   &:hover {
-    box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
-      0px 4px 56px rgba(51, 51, 51, 0.16);
+    box-shadow: ${(props) => props.theme.shadowHover};
   }
+
   &:focus-within {
-    box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
-      0px 4px 24px rgba(51, 51, 51, 0.24);
+    box-shadow: ${(props) => props.theme.shadowActive};
   }
 `;
 
 export const InputField = styled.input.attrs({ type: "input" })`
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: calc(100% - 2 * 16px);
   margin: 0;
   padding: 0;
-  top: 0;
-  left: 0;
+  top: 30px;
+  left: 16px;
   border: none;
   background: none;
   outline: none;
-  padding-top: 8px;
-  padding-left: 16px;
-  font-size: 16px;
-  line-height: 24px;
+  font: ${(props) => props.theme.fontParagraph2};
+  color: ${(props) => props.theme.colorBlack};
 
   &:disabled,
-  &:disabled ~ .input__label {
+  &:disabled ~ .label {
     cursor: not-allowed;
-    color: rgba(17, 17, 17, 0.24);
+    opacity: 0.24;
   }
 
-  &:focus {
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  }
-  &:focus ~ .input__label,
-  &:not(:placeholder-shown).input__field:not(:focus) ~ .input__label {
+  &:focus ~ .label,
+  &:not(:placeholder-shown).input-field:not(:focus) ~ .label {
     top: 10px;
     left: 16px;
-    font-size: 0.8rem;
-  }
-
-  &:focus ~ .input {
-    box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
-      0px 4px 24px rgba(51, 51, 51, 0.24);
-  }
-  &:active ~ .input {
-    box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
-      0px 4px 24px rgba(51, 51, 51, 0.24);
+    font: ${(props) => props.theme.fontParagraph3};
   }
 `;
 
-export const InputLabel = styled.label`
+export const Label = styled.label`
   position: absolute;
-  font-size: 16px;
+  font: ${(props) => props.theme.fontParagraph2};
   left: 16px;
-  top: 20px;
+  top: 16px;
   cursor: text;
-  color: rgba(17, 17, 17, 0.48);
+  color: ${(props) => props.theme.colorGray};
 `;
 
-export const InputMessage = styled.label`
+export const Message = styled.label`
   position: absolute;
+  font: ${(props) => props.theme.fontParagraph2};
   top: 65px;
   left: 2px;
-  color: #db524e;
   color: ${(props) =>
-    props.inputState === "error" ? "#DB524E" : "rgba(17, 17, 17, 0.48)"};
+    props.inputState === "error"
+      ? props.theme.colorRed
+      : props.theme.colorGray};
 `;
 
 export const DoneIcon = styled(Done)`
@@ -96,5 +88,5 @@ export const DoneIcon = styled(Done)`
   top: 14px;
   left: 450px;
   width: 24px;
-  color: #27ae60;
+  color: ${(props) => props.theme.colorGreen};
 `;
