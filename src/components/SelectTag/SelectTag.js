@@ -5,7 +5,7 @@ import {
   TagWrapper,
   OverFlowWrapper,
   InputField,
-  InputLabel,
+  Label,
   CloseIcon,
   ArrowIcon,
   DoneIcon,
@@ -16,7 +16,7 @@ import {
 import PropTypes from "prop-types";
 import Tag from "../Tag/Tag";
 
-const SelectTag = ({ label, resultsArray }) => {
+const SelectTag = ({ label, resultsArray, handleDelete }) => {
   const [resultsWindow, setResultsWindow] = useState(false);
   const [closeButton, setCloseButton] = useState(false);
   const [results, setResults] = useState([]);
@@ -24,7 +24,7 @@ const SelectTag = ({ label, resultsArray }) => {
   const [selectedResult, setSelectedResult] = useState(arrayOfFalse);
   const inputRef = useRef();
 
-  const [input, setInput] = useState("");
+  const [inputValue, setInputValue] = useState("");
   const [tags, setTags] = useState([]);
   const [isKeyReleased, setIsKeyReleased] = useState(false);
 
@@ -39,43 +39,45 @@ const SelectTag = ({ label, resultsArray }) => {
   }, [tags]);
 
   const selectResult = (e, index, value) => {
-    e.preventDefault();
+    if (e.key === "Enter" || e.type === "mousedown") {
+      e.preventDefault();
 
-    // create a copy of selectedResult for updating with the new bool
-    let selectedResultCopy = selectedResult;
-    // toggle the checkmark for the selected item
-    selectedResultCopy[index] = !selectedResultCopy[index];
-    setSelectedResult(selectedResultCopy.map((x) => x));
+      // create a copy of selectedResult for updating with the new bool
+      let selectedResultCopy = selectedResult;
+      // toggle the checkmark for the selected item
+      selectedResultCopy[index] = !selectedResultCopy[index];
+      setSelectedResult(selectedResultCopy.map((x) => x));
 
-    // create a lowercase versions of value and tags for checking for different
-    // input spellings
-    const lowerCaseValue = value.toLowerCase();
-    const lowerCaseTags = tags.map((tag) => tag.toLowerCase());
+      // create a lowercase versions of value and tags for checking for different
+      // input spellings
+      const lowerCaseValue = value.toLowerCase();
+      const lowerCaseTags = tags.map((tag) => tag.toLowerCase());
 
-    // if the selected value is not already in the tags array, add the value to
-    // the tags array
-    if (!lowerCaseTags.includes(lowerCaseValue)) {
-      setTags((prevState) => [...prevState, value]);
-      setInput("");
-      // if the selected value is already in the tags array, remove the value from
+      // if the selected value is not already in the tags array, add the value to
       // the tags array
-    } else {
-      const tagsCopy = [...lowerCaseTags];
-      const filteredTags = tagsCopy.filter((e) => e !== lowerCaseValue);
-      setTags(filteredTags);
-    }
+      if (!lowerCaseTags.includes(lowerCaseValue)) {
+        setTags((prevState) => [...prevState, value]);
+        setInputValue("");
+        // if the selected value is already in the tags array, remove the value from
+        // the tags array
+      } else {
+        const tagsCopy = [...lowerCaseTags];
+        const filteredTags = tagsCopy.filter((e) => e !== lowerCaseValue);
+        setTags(filteredTags);
+      }
 
-    // show the closeButton because inputRef will not cause a render for
-    // handleInput, and in turn, not show the closeButton
-    if (selectedResult !== arrayOfFalse && value.length) {
-      setCloseButton(true);
+      // show the closeButton because inputRef will not cause a render for
+      // handleInput, and in turn, not show the closeButton
+      if (selectedResult !== arrayOfFalse && value.length) {
+        setCloseButton(true);
+      }
     }
   };
 
   const handleInput = (e) => {
     const { value } = e.target;
     // track the input state
-    setInput(value);
+    setInputValue(value);
     // if the input field has text or the tags array has items, show the results
     // window and the close button
     if (value.length || tags.length) {
@@ -91,7 +93,7 @@ const SelectTag = ({ label, resultsArray }) => {
   const handleTags = (e) => {
     const { key } = e;
     // make sure that the input is not blank
-    const trimmedInput = input.trim();
+    const trimmedInput = inputValue.trim();
     // create a lowercase version of the trimmedInput and tags array to check
     // for different spellings of the input
     const lowerCaseTrimmedInput = trimmedInput.toLowerCase();
@@ -109,7 +111,7 @@ const SelectTag = ({ label, resultsArray }) => {
 
       // Add trimmed input to tags array
       setTags((prevState) => [...prevState, trimmedInput]);
-      setInput("");
+      setInputValue("");
 
       // If the user inputs a result option, update the respective result
       // checkmark to reflect the tag
@@ -128,13 +130,18 @@ const SelectTag = ({ label, resultsArray }) => {
     // input field.
     // Also, check if the user has been holding down "Backspace". If yes, stop
     // user from deleting more than one tag without repressing "Backspace"
-    if (key === "Backspace" && !input.length && tags.length && isKeyReleased) {
+    if (
+      key === "Backspace" &&
+      !inputValue.length &&
+      tags.length &&
+      isKeyReleased
+    ) {
       e.preventDefault();
       // remove popped tag when hitting backspace
       const tagsCopy = [...tags];
       const poppedTag = tagsCopy.pop();
       setTags(tagsCopy);
-      setInput(poppedTag);
+      setInputValue(poppedTag);
 
       // update the selectedResult state to remove the checkmark from the result
       // when Backspacing the tag.
@@ -166,10 +173,10 @@ const SelectTag = ({ label, resultsArray }) => {
     // hide the close button on close
     setCloseButton(false);
     // set the input value to blank
-    setInput("");
+    setInputValue("");
     setTags([]);
     // target the inputfield with the cursor
-    inputRef.current.blur();
+    inputRef.current.focus();
   };
 
   const handleArrow = (e) => {
@@ -184,15 +191,18 @@ const SelectTag = ({ label, resultsArray }) => {
         <OverFlowWrapper>
           <TagWrapper>
             {tags.map((tag, tagIdx) => (
-              <Tag key={tagIdx} label={tag} />
-              // <div key={tagIdx}>{tag}</div>
+              <Tag
+                key={tagIdx}
+                label={tag}
+                handleClose={(e) => handleDelete(e)}
+              />
             ))}
           </TagWrapper>
           <InputField
-            className="input__field"
-            id="input__field"
+            className="input-field"
+            id="input-field"
             ref={inputRef}
-            value={input}
+            value={inputValue}
             onChange={handleInput}
             onKeyDown={handleTags}
             onKeyUp={handleKeyRelease}
@@ -201,14 +211,10 @@ const SelectTag = ({ label, resultsArray }) => {
               e.target.placeholder = " ";
               setResultsWindow(true);
             }}
-            onBlur={(e) => {
-              e.target.placeholder = " ";
-              setResultsWindow(false);
-            }}
           />
-          <InputLabel className="input__label" for="input_field" tags={tags}>
+          <Label className="label" forHtml="input-field" tags={tags}>
             {label}
-          </InputLabel>
+          </Label>
         </OverFlowWrapper>
         {closeButton && <CloseIcon onClick={() => handleClose()} />}
         <ArrowIcon
@@ -220,18 +226,18 @@ const SelectTag = ({ label, resultsArray }) => {
       {resultsWindow === true && (
         <ResultsWrapper>
           {results.map((result, resultIdx) => (
-            <>
-              <Result
-                key={resultIdx}
-                // use onMouseDown instead of onClick because onMouseDown fires
-                // before onBlur. This is needed to make resultsWindow state
-                // to operate as intended when selecting a result.
-                onMouseDown={(e) => selectResult(e, resultIdx, result)}
-              >
-                <ResultText>{result}</ResultText>
-                {selectedResult[resultIdx] === true && <DoneIcon />}
-              </Result>
-            </>
+            <Result
+              key={resultIdx}
+              // use onMouseDown instead of onClick because onMouseDown fires
+              // before onBlur. This is needed to make resultsWindow state
+              // to operate as intended when selecting a result.
+              onMouseDown={(e) => selectResult(e, resultIdx, result)}
+              tabIndex="0"
+              onKeyDown={(e) => selectResult(e, resultIdx, result)}
+            >
+              <ResultText>{result}</ResultText>
+              {selectedResult[resultIdx] === true && <DoneIcon />}
+            </Result>
           ))}
         </ResultsWrapper>
       )}
