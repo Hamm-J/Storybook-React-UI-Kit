@@ -3,7 +3,7 @@ import {
   SelectContainer,
   SelectWrapper,
   InputField,
-  InputLabel,
+  Label,
   CloseIcon,
   ArrowIcon,
   DoneIcon,
@@ -78,8 +78,8 @@ const Select = ({ label, results }) => {
     <SelectContainer>
       <SelectWrapper>
         <InputField
-          className="input__field"
-          id="input__field"
+          className="input-field"
+          id="input-field"
           ref={inputRef}
           onChange={handleInput}
           placeholder=" "
@@ -92,9 +92,9 @@ const Select = ({ label, results }) => {
             setResultsWindow(false);
           }}
         />
-        <InputLabel className="input__label" for="input_field">
+        <Label className="label" htmlFor="input-field">
           {label}
-        </InputLabel>
+        </Label>
         {closeButton && <CloseIcon onClick={() => handleClose()} />}
         <ArrowIcon
           resultsWindow={resultsWindow}

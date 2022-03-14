@@ -44,9 +44,9 @@ export const InputField = styled.input.attrs({ type: "input" })`
   outline: none;
 
   &:focus,
-  &:not(:placeholder-shown).input__field:not(:focus),
+  &:not(:placeholder-shown).input-field:not(:focus),
   &:-webkit-autofill {
-    & ~ .input__label {
+    & ~ .label {
       top: 6px;
       left: 16px;
       font-size: 13px;
@@ -79,7 +79,7 @@ export const Result = styled.div`
 
 export const ResultText = styled.span``;
 
-export const InputLabel = styled.label`
+export const Label = styled.label`
   position: absolute;
   top: 20px;
   left: 16px;
