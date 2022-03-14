@@ -7,13 +7,11 @@ export const SelectContainer = styled.div`
   box-sizing: border-box;
 
   &:hover {
-    box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
-      0px 4px 56px rgba(51, 51, 51, 0.16);
+    box-shadow: ${(props) => props.theme.shadowHover};
   }
 
   &:focus-within {
-    box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
-      0px 4px 24px rgba(51, 51, 51, 0.24);
+    box-shadow: ${(props) => props.theme.shadowActive};
   }
 `;
 
@@ -24,17 +22,14 @@ export const SelectWrapper = styled.div`
   position: relative;
 
   border: none;
-  background-color: white;
-  box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
-    0px 4px 16px rgba(51, 51, 51, 0.08);
+  background-color: ${(props) => props.theme.colorWhite};
+  box-shadow: ${(props) => props.theme.shadowDefault};
 `;
 
 export const InputField = styled.input.attrs({ type: "input" })`
   box-sizing: border-box;
   height: 100%;
   width: 100%;
-  font-size: 16px;
-  line-height: 24px;
   position: absolute;
   margin: 0;
   padding: 8px 66px 0 16px;
@@ -42,21 +37,20 @@ export const InputField = styled.input.attrs({ type: "input" })`
   border: none;
   background: none;
   outline: none;
+  font: ${(props) => props.theme.fontParagraph2};
 
   &:focus,
   &:not(:placeholder-shown).input-field:not(:focus),
   &:-webkit-autofill {
     & ~ .label {
       top: 6px;
-      left: 16px;
-      font-size: 13px;
+      font: ${(props) => props.theme.fontParagraph3};
     }
   }
 `;
 
 export const ResultsWrapper = styled.div`
-  box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
-    0px 4px 16px rgba(51, 51, 51, 0.08);
+  box-shadow: ${(props) => props.theme.shadowDefault};
   padding-top: 8px;
   padding-bottom: 8px;
   border-radius: 4px;
@@ -73,31 +67,32 @@ export const Result = styled.div`
   cursor: pointer;
 
   &:hover {
-    background-color: #f1f1f1;
+    background-color: ${(props) => props.theme.colorGrayL};
   }
 `;
 
-export const ResultText = styled.span``;
+export const ResultText = styled.span`
+  font: ${(props) => props.theme.fontParagraph2};
+`;
 
 export const Label = styled.label`
   position: absolute;
   top: 20px;
   left: 16px;
-  color: rgba(17, 17, 17, 0.48);
-  font-size: 16px;
-  line-height: 20px;
+  color: ${(props) => props.theme.colorGray};
   cursor: text;
+  font: ${(props) => props.theme.fontParagraph2};
 `;
 
 export const CloseIcon = styled(Close)`
   width: 20px;
-  color: #c4c4c4;
+  color: ${(props) => props.theme.colorGray};
   position: absolute;
   top: 16px;
   right: 45px;
 
   &:hover {
-    color: black;
+    color: ${(props) => props.theme.colorBlack};
     cursor: pointer;
   }
 `;
@@ -112,7 +107,8 @@ export const ArrowIcon = styled(KeyboardArrowDown)`
   transform: ${(props) =>
     props.resultsWindow ? "rotate(180deg)" : "rotate(0deg)"};
 
-  color: ${(props) => (props.resultsWindow ? "black" : "#c4c4c4")};
+  color: ${(props) =>
+    props.resultsWindow ? props.theme.colorBlack : props.theme.colorGray};
 `;
 
 export const DoneIcon = styled(Done)`
