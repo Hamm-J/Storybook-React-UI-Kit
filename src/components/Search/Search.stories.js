@@ -3,6 +3,7 @@ import Search from "./Search";
 export default {
   title: "Components/Search",
   component: Search,
+  argTypes: { handleResult: { action: "handleResult" } },
 };
 
 const Template = (args) => <Search {...args} />;

@@ -1,4 +1,4 @@
-import react, { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import {
   SearchContainer,
@@ -14,7 +14,7 @@ import {
   NoResults,
 } from "./Search.styled";
 
-const Search = ({ label, results, resultsState }) => {
+const Search = ({ label, results, resultsState, handleResult }) => {
   const [resultsWindow, setResultsWindow] = useState(false);
   const inputRef = useRef();
 
@@ -34,50 +34,57 @@ const Search = ({ label, results, resultsState }) => {
     inputRef.current.focus();
   };
 
+  const handleFocusInput = () => {
+    inputRef.current.focus();
+  };
+
   return (
-    <div>
-      <SearchContainer>
-        <InputWrapper>
-          <InputField
-            className="input__field"
-            id="input__field"
-            placeholder=" "
-            onChange={handleInput}
-            ref={inputRef}
-          />
-          <SearchIcon className="search__icon" />
-          <InputLabel className="input__label" for="input__field">
-            {label}
-          </InputLabel>
-          <CloseIcon className="close__icon" onClick={handleClose} />
-        </InputWrapper>
-        {resultsWindow && (
-          <ResultsWrapper>
-            {resultsState == "found" && (
-              <>
-                {results.map((result, resultIdx) => (
-                  <Result key={resultIdx} resultsState={resultsState}>
-                    <ResultText>{result}</ResultText>
-                  </Result>
-                ))}
-              </>
-            )}
+    <SearchContainer onClick={() => handleFocusInput()}>
+      <InputWrapper>
+        <InputField
+          className="input-field"
+          id="input-field"
+          placeholder=" "
+          onChange={handleInput}
+          ref={inputRef}
+        />
+        <SearchIcon className="search-icon" />
+        <InputLabel className="input-label" htmlFor="input-field">
+          {label}
+        </InputLabel>
+        <CloseIcon className="close-icon" onClick={handleClose} />
+      </InputWrapper>
+      {resultsWindow && (
+        <ResultsWrapper>
+          {resultsState === "found" && (
+            <>
+              {results.map((result, resultIdx) => (
+                <Result
+                  key={resultIdx}
+                  resultsState={resultsState}
+                  onClick={(e) => handleResult(e)}
+                  tabIndex="0"
+                >
+                  <ResultText>{result}</ResultText>
+                </Result>
+              ))}
+            </>
+          )}
 
-            {resultsState == "loading" && (
-              <>
-                {loadingArray.map((result, resultIdx) => (
-                  <Result key={resultIdx} resultsState={resultsState}>
-                    <ResultLoading />
-                  </Result>
-                ))}
-              </>
-            )}
+          {resultsState === "loading" && (
+            <>
+              {loadingArray.map((result, resultIdx) => (
+                <Result key={resultIdx} resultsState={resultsState}>
+                  <ResultLoading />
+                </Result>
+              ))}
+            </>
+          )}
 
-            {resultsState == "noResults" && <NoResults>No results</NoResults>}
-          </ResultsWrapper>
-        )}
-      </SearchContainer>
-    </div>
+          {resultsState === "noResults" && <NoResults>No results</NoResults>}
+        </ResultsWrapper>
+      )}
+    </SearchContainer>
   );
 };
 
