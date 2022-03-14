@@ -7,8 +7,8 @@ export const SearchContainer = styled.div`
   flex-direction: column;
   gap: 10px;
   width: 482px;
-  box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
-    0px 4px 16px rgba(51, 51, 51, 0.08);
+  box-shadow: ${(props) => props.theme.shadowDefault};
+  cursor: text;
 `;
 
 export const InputWrapper = styled.div`
@@ -19,9 +19,9 @@ export const InputWrapper = styled.div`
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 4px;
+
   &:hover {
-    box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
-      0px 4px 16px rgba(51, 51, 51, 0.08);
+    box-shadow: ${(props) => props.theme.shadowDefault};
   }
 `;
 
@@ -30,18 +30,19 @@ export const InputField = styled.input.attrs({ type: "input" })`
   border: none;
   outline: none;
   padding-left: 10px;
+  font: ${(props) => props.theme.fontParagraph2};
 
-  &:active ~ .input__label,
-  &:focus ~ .input__label,
-  &:not(:placeholder-shown) ~ .input__label {
+  &:active ~ .input-label,
+  &:focus ~ .input-label,
+  &:not(:placeholder-shown) ~ .input-label {
     opacity: 0;
   }
 
-  &:focus ~ .search__icon {
-    color: black;
+  &:focus ~ .search-icon {
+    color: ${(props) => props.theme.colorBlack};
   }
 
-  &:not(:placeholder-shown) ~ .close__icon {
+  &:not(:placeholder-shown) ~ .close-icon {
     opacity: 1;
   }
 `;
@@ -51,6 +52,7 @@ export const InputLabel = styled.label`
   left: 30px;
   color: gray;
   padding-left: 10px;
+  font: ${(props) => props.theme.fontParagraph2};
 
   &:hover {
     cursor: text;
@@ -60,23 +62,22 @@ export const InputLabel = styled.label`
 export const SearchIcon = styled(Search)`
   order: -1;
   width: 25px;
-  color: rgba(17, 17, 17, 0.48);
+  color: ${(props) => props.theme.colorGray};
 `;
 
 export const CloseIcon = styled(Close)`
   opacity: 0;
   width: 25px;
-  color: rgba(17, 17, 17, 0.48);
+  color: ${(props) => props.theme.colorGray};
   cursor: pointer;
 
   &:hover {
-    color: black;
+    color: ${(props) => props.theme.colorBlack};
   }
 `;
 
 export const ResultsWrapper = styled.div`
-  box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
-    0px 4px 16px rgba(51, 51, 51, 0.08);
+  box-shadow: ${(props) => props.theme.shadowDefault};
   padding-top: 8px;
   padding-bottom: 8px;
   border-radius: 4px;
@@ -87,14 +88,17 @@ export const Result = styled.div`
   align-items: center;
   padding-left: 16px;
   padding: 8px 16px 8px 16px;
-  width: 482px;
+  width: calc(482px - 32px);
   height: 24px;
-  cursor: ${(props) => (props.resultsState == "found" ? "pointer" : "default")};
+  cursor: ${(props) =>
+    props.resultsState === "found" ? "pointer" : "default"};
+  outline: none;
   ${(props) =>
-    props.resultsState == "found" &&
+    props.resultsState === "found" &&
     css`
-      &:hover {
-        background-color: #f1f1f1;
+      &:hover,
+      &:focus {
+        background-color: ${(props) => props.theme.colorGrayL};
         width: calc(100% - 32px);
       }
     `}
@@ -102,11 +106,12 @@ export const Result = styled.div`
 
 export const ResultText = styled.span`
   cursor: pointer;
+  font: ${(props) => props.theme.fontParagraph2};
 `;
 
 export const ResultLoading = styled.div`
   display: block;
-  background-color: #f1f1f1;
+  background-color: ${(props) => props.theme.colorGrayL};
   width: calc(100% - 32px);
   height: 26px;
 `;
@@ -118,7 +123,8 @@ export const NoResults = styled.div`
   padding: 8px 16px 8px 16px;
   width: 482px;
   height: 24px;
-  color: rgba(17, 17, 17, 0.48);
+  color: ${(props) => props.theme.colorGray};
+  font: ${(props) => props.theme.fontParagraph2};
 
   cursor: default;
 `;
