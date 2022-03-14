@@ -2,22 +2,22 @@ import styled from "styled-components";
 
 export const InputTagContainer = styled.div`
   background-color: ${(props) =>
-    props.inputState === "error" ? "#F9E3E3" : "#FFFFFF"};
+    props.inputState === "error"
+      ? props.theme.colorRedGirl
+      : props.theme.colorWhite};
+  cursor: text;
   position: relative;
   width: 482px;
   height: 56px;
   border-radius: 2px;
-  box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
-    0px 4px 16px rgba(51, 51, 51, 0.08);
+  box-shadow: ${(props) => props.theme.shadowDefault};
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
   &:hover {
-    box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
-      0px 4px 56px rgba(51, 51, 51, 0.16);
+    box-shadow: ${(props) => props.theme.shadowHover};
   }
   &:focus-within {
-    box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
-      0px 4px 24px rgba(51, 51, 51, 0.24);
+    box-shadow: ${(props) => props.theme.shadowActive};
   }
 `;
 
@@ -51,11 +51,10 @@ export const InputField = styled.input.attrs({ type: "input" })`
   border: none;
   background: none;
   outline: none;
-  font-size: 16px;
-  line-height: 24px;
+  font: ${(props) => props.theme.fontParagraph2};
 
   &:disabled,
-  &:disabled ~ .input__label {
+  &:disabled ~ .label {
     cursor: not-allowed;
     color: rgba(17, 17, 17, 0.24);
   }
@@ -63,36 +62,39 @@ export const InputField = styled.input.attrs({ type: "input" })`
   &:focus {
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   }
-  &:focus ~ .input__label,
-  &:not(:placeholder-shown).input__field:not(:focus) ~ .input__label {
+  &:focus ~ .label,
+  &:not(:placeholder-shown).input__field:not(:focus) ~ .label {
     opacity: 0;
   }
 
-  &:focus ~ .input {
+  /* &:focus ~ .input {
     box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
       0px 4px 24px rgba(51, 51, 51, 0.24);
   }
   &:active ~ .input {
     box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
       0px 4px 24px rgba(51, 51, 51, 0.24);
-  }
+  } */
 `;
 
-export const InputLabel = styled.label`
+export const Label = styled.label`
   position: absolute;
-  font-size: 16px;
+  font: ${(props) => props.theme.fontParagraph2};
   left: 16px;
-  top: 20px;
-  opacity: ${(props) => (props.tags.length ? "0" : "1")};
+  top: 16px;
+  display: ${(props) =>
+    props.tags.length || props.inputValue.length ? "none" : "inline"};
   cursor: text;
-  color: rgba(17, 17, 17, 0.48);
+  color: ${(props) => props.theme.colorGray};
 `;
 
-export const InputMessage = styled.label`
+export const Message = styled.label`
   position: absolute;
   top: 65px;
   left: 2px;
-  color: #db524e;
+  font: ${(props) => props.theme.fontParagraph2};
   color: ${(props) =>
-    props.inputState === "error" ? "#DB524E" : "rgba(17, 17, 17, 0.48)"};
+    props.inputState === "error"
+      ? props.theme.colorRed
+      : props.theme.colorGray};
 `;

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { TagContainer, Label, CloseIcon } from "./Tag.styled";
 
-const Tag = ({ label, size, handleClose }) => {
+const Tag = ({ label, size, handleClose, onClick }) => {
   return (
     <TagContainer size={size}>
       <Label>{label}</Label>

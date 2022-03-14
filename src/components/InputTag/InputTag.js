@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import {
   InputTagContainer,
   TagWrapper,
   OverFlowWrapper,
   InputField,
-  InputLabel,
-  InputMessage,
+  Label,
+  Message,
 } from "./InputTag.styled";
 import Tag from "../Tag/Tag";
 
@@ -16,11 +16,13 @@ const InputTag = ({
   errorMessage,
   descriptionMessage,
   tagsMaxCount,
+  handleDelete,
 }) => {
   const [inputState, setInputState] = useState("");
   const [errorMessageState, setErrorMessageState] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [tags, setTags] = useState([]);
+  const inputRef = useRef();
 
   useEffect(() => {
     setInputState(inputStateValue);
@@ -93,35 +95,53 @@ const InputTag = ({
     setIsKeyReleased(true);
   };
 
+  // Focus the input field whenever the container is clicked
+  const handleFocusInput = () => {
+    inputRef.current.focus();
+  };
+
   return (
-    <InputTagContainer className="input-tag__container" inputState={inputState}>
+    <InputTagContainer
+      inputState={inputState}
+      onClick={() => handleFocusInput()}
+    >
       <OverFlowWrapper>
         <TagWrapper>
           {tags.map((tag, tagIdx) => (
-            <Tag key={tagIdx} label={tag}></Tag>
+            <Tag
+              key={tagIdx}
+              label={tag}
+              // pass handleClose function so that argTypes fires as intended for
+              // Tag story
+              handleClose={(e) => handleDelete(e)}
+            ></Tag>
           ))}
         </TagWrapper>
         <InputField
-          className="input__field"
-          id="inputId"
+          className="input-field"
+          id="input-id"
           placeholder=" "
           value={inputValue}
           onChange={(e) => handleInput(e)}
           onKeyDown={(e) => handleTags(e)}
           onKeyUp={(e) => handleKeyRelease(e)}
           disabled={inputState === "disabled" ? true : false}
+          ref={inputRef}
         />
-        <InputLabel className="input__label" for="inputId" tags={tags}>
+        <Label
+          className="label"
+          htmlFor="input-id"
+          tags={tags}
+          inputValue={inputValue}
+        >
           {label}
-        </InputLabel>
+        </Label>
       </OverFlowWrapper>
       {inputState === "error" && (
-        <InputMessage inputState={inputState}>{errorMessageState}</InputMessage>
+        <Message inputState={inputState}>{errorMessageState}</Message>
       )}
       {inputState === "description" && (
-        <InputMessage inputState={inputState}>
-          {descriptionMessage}
-        </InputMessage>
+        <Message inputState={inputState}>{descriptionMessage}</Message>
       )}
     </InputTagContainer>
   );
