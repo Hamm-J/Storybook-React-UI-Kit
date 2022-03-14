@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const TooltipContainer = styled.div`
-  background-color: white;
-  border: 1px solid #f1f1f1;
+  background-color: ${(props) => props.theme.colorWhite};
+  border: 1px solid ${(props) => props.theme.colorGrayL};
   border-radius: 4px;
   height: 44px;
   padding: 0px 12px 0px 12px;
@@ -17,18 +17,19 @@ export const TooltipContainer = styled.div`
 `;
 
 export const Label = styled.label`
-  color: black;
+  color: ${(props) => props.theme.colorBlack};
+  font: ${(props) => props.theme.fontParagraph3};
 `;
 
 export const PointerTopLeft = styled.div`
   position: relative;
 
+  // pointer and pointer border
   &:before,
   &:after {
     content: "";
     display: block;
     position: absolute;
-    /* background-color: red; */
     top: -27px; // Offset top the height of the pointer's border-width
     right: -6px;
     z-index: 3;
@@ -37,27 +38,27 @@ export const PointerTopLeft = styled.div`
     overflow: hidden;
     border: solid 6px transparent; /* set the width of the pointer */
     border-top: 0;
-    border-bottom-color: white;
+    border-bottom-color: ${(props) => props.theme.colorWhite};
   }
 
+  // pointer border
   &:after {
-    /* background-color: blue; */
     top: -28px; /* Offset of pointer border-width + bubble border-width */
     right: -6px;
     z-index: 1;
-    border-bottom-color: #f1f1f1;
+    border-bottom-color: ${(props) => props.theme.colorGrayL};
   }
 `;
 
 export const PointerTopRight = styled.div`
   position: relative;
 
+  // pointer and pointer border
   &:before,
   &:after {
     content: "";
     display: block;
     position: absolute;
-    /* background-color: red; */
     top: -27px; /* Offset top the height of the pointer's border-width */
     left: -6px;
     z-index: 3;
@@ -66,27 +67,27 @@ export const PointerTopRight = styled.div`
     overflow: hidden;
     border: solid 6px transparent; /* set the width of the pointer */
     border-top: 0;
-    border-bottom-color: white;
+    border-bottom-color: ${(props) => props.theme.colorWhite};
   }
 
+  // pointer border
   &:after {
-    /* background-color: blue; */
     top: -28px; /* Offset of pointer border-width + bubble border-width */
     left: -6px;
     z-index: 1;
-    border-bottom-color: #f1f1f1;
+    border-bottom-color: ${(props) => props.theme.colorGrayL};
   }
 `;
 
 export const PointerBottomLeft = styled.div`
   position: relative;
 
+  // pointer and pointer border
   &:before,
   &:after {
     content: "";
     display: block;
     position: absolute;
-    /* background-color: red; */
     bottom: -27px; // Offset top the height of the pointer's border-width
     right: -6px;
     z-index: 3;
@@ -95,27 +96,27 @@ export const PointerBottomLeft = styled.div`
     overflow: hidden;
     border: solid 6px transparent; /* set the width of the pointer */
     border-bottom: 0;
-    border-top-color: white;
+    border-top-color: ${(props) => props.theme.colorWhite};
   }
 
+  // pointer border
   &:after {
-    /* background-color: blue; */
     bottom: -26px; /* Offset of pointer border-width + bubble border-width */
     right: -6px;
     z-index: 1;
-    border-bottom-color: #f1f1f1;
+    border-bottom-color: ${(props) => props.theme.colorGrayL};
   }
 `;
 
 export const PointerBottomRight = styled.div`
   position: relative;
 
+  // pointer and pointer border
   &:before,
   &:after {
     content: "";
     display: block;
     position: absolute;
-    /* background-color: red; */
     bottom: -27px; // Offset top the height of the pointer's border-width
     right: -6px;
     z-index: 3;
@@ -124,27 +125,27 @@ export const PointerBottomRight = styled.div`
     overflow: hidden;
     border: solid 6px transparent; /* set the width of the pointer */
     border-bottom: 0;
-    border-top-color: white;
+    border-top-color: ${(props) => props.theme.colorWhite};
   }
 
+  // pointer border
   &:after {
-    /* background-color: blue; */
     bottom: -26px; /* Offset of pointer border-width + bubble border-width */
     right: -6px;
     z-index: 1;
-    border-bottom-color: #f1f1f1;
+    border-bottom-color: ${(props) => props.theme.colorGrayL};
   }
 `;
 
 export const PointerSideLeft = styled.div`
   position: relative;
 
+  // pointer and pointer border
   &:before,
   &:after {
     content: "";
     display: block;
     position: absolute;
-    /* background-color: red; */
     bottom: -6px; // Offset top the height of the pointer's border-width
     right: 12px;
     z-index: 3;
@@ -153,27 +154,27 @@ export const PointerSideLeft = styled.div`
     overflow: hidden;
     border: solid 6px transparent; /* set the width of the pointer */
     border-left: 0;
-    border-right-color: white;
+    border-right-color: ${(props) => props.theme.colorWhite};
   }
 
+  // pointer border
   &:after {
-    /* background-color: blue; */
     bottom: -6px; /* Offset of pointer border-width + bubble border-width */
     right: 13px;
     z-index: 1;
-    border-right-color: #f1f1f1;
+    border-right-color: ${(props) => props.theme.colorGrayL};
   }
 `;
 
 export const PointerSideRight = styled.div`
   position: relative;
 
+  // pointer and pointer border
   &:before,
   &:after {
     content: "";
     display: block;
     position: absolute;
-    /* background-color: red; */
     bottom: -6px; // Offset top the height of the pointer's border-width
     left: 12px;
     z-index: 3;
@@ -182,14 +183,14 @@ export const PointerSideRight = styled.div`
     overflow: hidden;
     border: solid 6px transparent; /* set the width of the pointer */
     border-right: 0;
-    border-left-color: white;
+    border-left-color: ${(props) => props.theme.colorWhite};
   }
 
+  // pointer border
   &:after {
-    /* background-color: blue; */
     bottom: -6px; /* Offset of pointer border-width + bubble border-width */
     left: 13px;
     z-index: 1;
-    border-left-color: #f1f1f1;
+    border-left-color: ${(props) => props.theme.colorGrayL};
   }
 `;
