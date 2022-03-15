@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { Close, Done, PriorityHigh } from "@styled-icons/material";
 
 export const PopupContainer = styled.div`
-  width: 480px;
+  width: ${(props) =>
+    props.popupState === "contact" ? "fit-content" : "480px"};
   border-radius: 8px;
   box-shadow: ${(props) => props.theme.shadowDefault};
   box-sizing: border-box;
@@ -10,8 +11,13 @@ export const PopupContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: flex-start;
+  align-items: flex-start; */
+
+  justify-content: ${(props) =>
+    props.popupState === "contact" ? "flex-start" : "center"};
+  align-items: ${(props) =>
+    props.popupState === "contact" ? "flex-start" : "center"};
   gap: 10px;
 `;
 
@@ -21,7 +27,8 @@ export const Head = styled.h1`
   padding: 0;
   word-wrap: break-word;
   inline-size: 290px;
-  text-align: center;
+  text-align: ${(props) =>
+    props.popupState === "contact" ? "start" : "center"};
 `;
 
 export const Description = styled.p`
@@ -30,16 +37,48 @@ export const Description = styled.p`
   padding: 0;
   word-wrap: break-word;
   inline-size: 290px;
-  text-align: center;
+  text-align: ${(props) =>
+    props.popupState === "contact" ? "start" : "center"};
 `;
 
 export const ButtonWrapper = styled.div`
   display: flex;
   gap: 10px;
 `;
-export const ButtonMain = styled.button``;
+export const ButtonOne = styled.button`
+  background-color: ${(props) => props.theme.colorPrimary};
+  border: 2px solid ${(props) => props.theme.colorPrimary};
+  padding: 10px;
+  border-radius: 4px;
+  font: ${(props) => props.theme.fontParagraph2};
+  color: ${(props) => props.theme.colorWhite};
+  cursor: pointer;
 
-export const ButtonSecondary = styled.button``;
+  &:hover {
+    background-color: ${(props) => props.theme.colorHover};
+  }
+
+  &:active {
+    background-color: ${(props) => props.theme.colorActive};
+  }
+`;
+export const ButtonTwo = styled.button`
+  background-color: ${(props) => props.theme.colorWhite};
+  border: 2px solid ${(props) => props.theme.colorPrimary};
+  padding: 10px;
+  border-radius: 4px;
+  font: ${(props) => props.theme.fontParagraph2};
+  color: ${(props) => props.theme.colorPrimary};
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(110, 65, 226, 0.04);
+  }
+
+  &:active {
+    background-color: rgba(110, 65, 226, 0.16);
+  }
+`;
 
 export const CloseIconWrapper = styled.div`
   position: absolute;
@@ -47,9 +86,8 @@ export const CloseIconWrapper = styled.div`
   right: 10px;
   width: 44px;
   height: 44px;
-  background-color: ${(props) => props.theme.backgroundColor};
-  border: 2px solid ${(props) => props.theme.borderColor};
-  box-shadow: ${(props) => props.theme.boxShadow};
+  background-color: ${(props) => props.theme.colorPrimary};
+  border: 2px solid ${(props) => props.theme.colorPrimary};
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -58,8 +96,8 @@ export const CloseIconWrapper = styled.div`
 `;
 
 export const CloseIcon = styled(Close)`
-  color: ${(props) => props.theme.color};
-  width: 45%;
+  color: ${(props) => props.theme.colorWhite};
+  width: 50%;
   cursor: pointer;
 `;
 
@@ -99,4 +137,14 @@ export const IconBackground = styled.div`
   border-radius: 50%;
   width: 96px;
   height: 96px;
+`;
+
+export const ContactWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 24px;
+  margin-bottom: 24px;
 `;
