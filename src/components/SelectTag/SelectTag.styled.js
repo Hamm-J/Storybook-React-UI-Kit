@@ -7,13 +7,11 @@ export const SelectTagContainer = styled.div`
   box-sizing: border-box;
 
   &:hover {
-    box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
-      0px 4px 56px rgba(51, 51, 51, 0.16);
+    box-shadow: ${(props) => props.theme.shadowHover};
   }
 
   &:focus-within {
-    box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
-      0px 4px 24px rgba(51, 51, 51, 0.24);
+    box-shadow: ${(props) => props.theme.shadowActive};
   }
 `;
 
@@ -22,11 +20,9 @@ export const InputWrapper = styled.div`
   height: 56px;
   border-radius: 2px;
   position: relative;
-
   border: none;
-  background-color: white;
-  box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
-    0px 4px 16px rgba(51, 51, 51, 0.08);
+  background-color: ${(props) => props.theme.colorWhite};
+  box-shadow: ${(props) => props.theme.shadowDefault};
 `;
 
 export const TagWrapper = styled.div`
@@ -40,18 +36,17 @@ export const InputField = styled.input.attrs({ type: "input" })`
   height: 100%;
   width: 100%;
   min-width: 80%;
-  font-size: 16px;
-  line-height: 24px;
   margin: 0;
   border: none;
   padding: 8px 66px 0 0px;
   background: none;
   outline: none;
+  font: ${(props) => props.theme.fontParagraph2};
 
   &:focus,
-  &:not(:placeholder-shown).input__field:not(:focus),
+  &:not(:placeholder-shown).input-field:not(:focus),
   &:-webkit-autofill {
-    & ~ .input__label {
+    & ~ .label {
       opacity: 0;
     }
   }
@@ -69,8 +64,7 @@ export const OverFlowWrapper = styled.div`
 `;
 
 export const ResultsWrapper = styled.div`
-  box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
-    0px 4px 16px rgba(51, 51, 51, 0.08);
+  box-shadow: ${(props) => props.theme.shadowDefault};
   padding-top: 8px;
   padding-bottom: 8px;
   border-radius: 4px;
@@ -85,34 +79,36 @@ export const Result = styled.div`
   padding: 8px 16px 8px 16px;
   height: 24px;
   cursor: pointer;
+  font: ${(props) => props.theme.fontParagraph2};
+  outline: none;
 
+  &:focus,
   &:hover {
-    background-color: #f1f1f1;
+    background-color: ${(props) => props.theme.colorGrayL};
   }
 `;
 
 export const ResultText = styled.span``;
 
-export const InputLabel = styled.label`
+export const Label = styled.label`
   position: absolute;
-  top: 20px;
+  top: 16px;
   left: 16px;
-  color: rgba(17, 17, 17, 0.48);
-  font-size: 16px;
-  line-height: 20px;
+  color: ${(props) => props.theme.colorGray};
   cursor: text;
-  opacity: ${(props) => (props.tags.length ? "0" : "1")};
+  display: ${(props) => (props.tags.length ? "none" : "inline")};
+  font: ${(props) => props.theme.fontParagraph2};
 `;
 
 export const CloseIcon = styled(Close)`
   width: 20px;
-  color: #c4c4c4;
+  color: ${(props) => props.theme.colorGray};
   position: absolute;
   top: 16px;
   right: 45px;
 
   &:hover {
-    color: black;
+    color: ${(props) => props.theme.colorBlack};
     cursor: pointer;
   }
 `;
@@ -127,7 +123,8 @@ export const ArrowIcon = styled(KeyboardArrowDown)`
   transform: ${(props) =>
     props.resultsWindow ? "rotate(180deg)" : "rotate(0deg)"};
 
-  color: ${(props) => (props.resultsWindow ? "black" : "#c4c4c4")};
+  color: ${(props) =>
+    props.resultsWindow ? props.theme.colorBlack : props.theme.colorGray};
 `;
 
 export const DoneIcon = styled(Done)`
