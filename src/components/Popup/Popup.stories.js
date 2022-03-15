@@ -2,7 +2,12 @@ import Popup from "./Popup";
 
 export default {
   title: "Components/Popup",
-  componnet: Popup,
+  component: Popup,
+  argTypes: {
+    handleClose: { action: "handleClose" },
+    handleButton1: { action: "handleButton1" },
+    handleButton2: { action: "handleButton2" },
+  },
 };
 
 const Template = (args) => <Popup {...args} />;
