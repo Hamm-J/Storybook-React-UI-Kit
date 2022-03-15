@@ -3,6 +3,7 @@ import InputTag from "./InputTag";
 export default {
   title: "Components/InputTag",
   component: InputTag,
+  argTypes: { handleDelete: { action: "handleDelete" } },
 };
 
 const Template = (args) => <InputTag {...args} />;
