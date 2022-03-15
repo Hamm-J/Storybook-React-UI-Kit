@@ -113,20 +113,18 @@ const Select = ({ label, results }) => {
       {resultsWindow === true && (
         <ResultsWrapper>
           {results.map((result, resultIdx) => (
-            <>
-              <Result
-                key={resultIdx}
-                // use onMouseDown instead of onClick because onMouseDown fires
-                // before onBlur. This is needed to make resultsWindow state
-                // to operate as intended when selecting a result.
-                onMouseDown={(e) => selectResult(e, resultIdx, result)}
-                tabIndex="0"
-                onKeyDown={(e) => selectResult(e, resultIdx, result)}
-              >
-                <ResultText>{result}</ResultText>
-                {selectedResult[resultIdx] === true && <DoneIcon />}
-              </Result>
-            </>
+            <Result
+              key={resultIdx}
+              // use onMouseDown instead of onClick because onMouseDown fires
+              // before onBlur. This is needed to make resultsWindow state
+              // to operate as intended when selecting a result.
+              onMouseDown={(e) => selectResult(e, resultIdx, result)}
+              tabIndex="0"
+              onKeyDown={(e) => selectResult(e, resultIdx, result)}
+            >
+              <ResultText>{result}</ResultText>
+              {selectedResult[resultIdx] === true && <DoneIcon />}
+            </Result>
           ))}
         </ResultsWrapper>
       )}
