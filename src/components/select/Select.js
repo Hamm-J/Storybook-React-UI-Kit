@@ -19,6 +19,7 @@ const Select = ({ label, results }) => {
   const arrayOfFalse = new Array(results.length).fill(false);
   const [selectedResult, setSelectedResults] = useState(arrayOfFalse);
   const [selectedResultValue, setSelectedResultValue] = useState("");
+  const [inputValue, setInputValue] = useState("");
   const inputRef = useRef();
 
   const selectResult = (e, index, value) => {
@@ -33,7 +34,7 @@ const Select = ({ label, results }) => {
 
       if (selectedResult !== arrayOfFalse) {
         // set the input to the seleted result
-        inputRef.current.value = value;
+        setInputValue(value);
         // show the closeButton because inputRef will not cause a render for
         // handleInput, and in turn, not show the closeButton
         setCloseButton(true);
@@ -42,8 +43,10 @@ const Select = ({ label, results }) => {
   };
 
   const handleInput = (e) => {
+    const { value } = e.target;
+    setInputValue(value);
     // if the input field has text, show the results window and the close button
-    if (e.target.value.length > 0) {
+    if (value.length > 0) {
       setResultsWindow(true);
       setCloseButton(true);
       // else hide the results window and the close button
@@ -51,9 +54,11 @@ const Select = ({ label, results }) => {
       setResultsWindow(false);
       setCloseButton(false);
     }
-    if (e.target.value !== selectedResultValue) {
+    if (value !== selectedResultValue) {
       setResultsWindow(true);
       setSelectedResults(arrayOfFalse);
+    } else {
+      setResultsWindow(false);
     }
   };
 
@@ -65,9 +70,9 @@ const Select = ({ label, results }) => {
     // hide the close button on close
     setCloseButton(false);
     // set the input value to blank
-    inputRef.current.value = "";
+    setInputValue("");
     // target the inputfield with the cursor
-    inputRef.current.blur();
+    inputRef.current.focus();
   };
 
   const handleArrow = (e) => {
@@ -83,8 +88,9 @@ const Select = ({ label, results }) => {
           className="input-field"
           id="input-field"
           ref={inputRef}
-          onChange={handleInput}
+          onChange={(e) => handleInput(e)}
           placeholder=" "
+          value={inputValue}
           onFocus={(e) => {
             e.target.placeholder = "Example, USA";
             setResultsWindow(true);
