@@ -17,7 +17,7 @@ const Select = ({ label, results }) => {
   const [resultsWindow, setResultsWindow] = useState(false);
   const [closeButton, setCloseButton] = useState(false);
   const arrayOfFalse = new Array(results.length).fill(false);
-  const [selectedResult, setSelectedResults] = useState(arrayOfFalse);
+  const [selectedResult, setSelectedResult] = useState(arrayOfFalse);
   const [selectedResultValue, setSelectedResultValue] = useState("");
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef();
@@ -30,7 +30,7 @@ const Select = ({ label, results }) => {
       let newArray = arrayOfFalse;
       // toggle the checkmark for the selected item
       newArray[index] = true;
-      setSelectedResults(newArray.map((x) => x));
+      setSelectedResult(newArray.map((x) => x));
 
       if (selectedResult !== arrayOfFalse) {
         // set the input to the seleted result
@@ -56,7 +56,7 @@ const Select = ({ label, results }) => {
     }
     if (value !== selectedResultValue) {
       setResultsWindow(true);
-      setSelectedResults(arrayOfFalse);
+      setSelectedResult(arrayOfFalse);
     } else {
       setResultsWindow(false);
     }
@@ -64,7 +64,7 @@ const Select = ({ label, results }) => {
 
   const handleClose = () => {
     // reset selected result on close
-    setSelectedResults(arrayOfFalse);
+    setSelectedResult(arrayOfFalse);
     // hide results window on close
     setResultsWindow(false);
     // hide the close button on close
