@@ -13,4 +13,5 @@ Primary.args = {
   description:
     "PNG, jpg, gif files up to 10MB in size are available for upload",
   progressBarValue: 50,
+  dragOverState: false,
 };
