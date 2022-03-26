@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 const handleTabPadding = (state) => {
   switch (state) {
@@ -15,7 +15,9 @@ const handleTabPadding = (state) => {
 };
 
 export const TabContainer = styled.div`
-  max-width: fit-content;
+  /* max-width: 347px; */
+  max-width: ${(props) =>
+    props.tabState === "horizontal" ? "347px" : "fit-content"};
   max-height: fit-content;
   display: flex;
   justify-content: space-between;
@@ -30,6 +32,11 @@ export const TabContainer = styled.div`
 
   &:active > .label {
     color: ${(props) => props.theme.colorBlack};
+  }
+
+  &:active .progress-left,
+  &:active .progress-right {
+    background-color: ${(props) => props.theme.colorGrayL};
   }
 
   // set box-shadow for large, medium, and small tabState's
@@ -69,4 +76,79 @@ export const Label = styled.label`
     props.tabState === "small"
       ? props.theme.fontParagraph3
       : props.theme.fontParagraph2};
+`;
+
+export const CircleWrapper = styled.div`
+  height: 20px;
+  width: 20px;
+  position: relative;
+  border-radius: 100%;
+  overflow: hidden;
+`;
+export const Inner = styled.div`
+  position: absolute;
+  z-index: 6;
+  top: 50%;
+  left: 50%;
+  height: 16px;
+  width: 16px;
+  margin: -8px 0 0 -8px;
+  background-color: ${(props) => props.theme.colorWhite};
+  border-radius: 100%;
+`;
+export const Circle = styled.div``;
+
+export const BarLeft = styled.div`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: ${(props) => props.theme.colorGrayL};
+  clip: rect(0px, 20px, 20px, 10px);
+
+  transform: rotate(180deg);
+`;
+export const BarRight = styled.div`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: ${(props) => props.theme.colorGrayL};
+  clip: rect(0px, 20px, 20px, 10px);
+
+  /* transform: rotate(180deg); */
+  z-index: 3;
+`;
+const left = keyframes`
+  100% {
+    transform: rotate(180deg)
+  }
+`;
+export const ProgressLeft = styled.div`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  clip: rect(0px, 10px, 20px, 0px);
+  background-color: ${(props) => props.theme.colorGreen};
+
+  z-index: 1;
+  /* animation: ${left} 4s linear both;
+  animation-delay: 4s; */
+  transform: rotate(0deg);
+`;
+
+const right = keyframes`
+  100% {
+    transform: rotate(180deg);
+  }
+`;
+
+export const ProgressRight = styled.div`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  clip: rect(0px, 10px, 20px, 0px);
+  background-color: ${(props) => props.theme.colorGreen};
+  transform: rotate(90deg);
+  /* animation: ${right} 4s linear both; */
 `;
