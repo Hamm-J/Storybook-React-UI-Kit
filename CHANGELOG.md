@@ -128,3 +128,9 @@ Updated Badge Story
 ### Pre-release Highlights
 
 Updated Avatar Story
+
+### 0.3.0 (2022-03-29)
+
+### Pre-release Highlights
+
+Added Files Story
