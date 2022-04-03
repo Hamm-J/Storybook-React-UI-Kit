@@ -8,8 +8,14 @@ export default {
 
 const Template = (args) => <Tag {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Small = Template.bind({});
+Small.args = {
   label: "Tag",
   size: "small",
+};
+
+export const Medium = Template.bind({});
+Medium.args = {
+  label: "Tag",
+  size: "medium",
 };

@@ -12,11 +12,38 @@ export default {
 
 const Template = (args) => <Popup {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Alert = Template.bind({});
+Alert.args = {
   popupState: "alert",
+  head: "Do you want to delete?",
+  description: "You can't restore this file",
+  buttonOneLabel: "Delete",
+  buttonTwoLabel: "Cancel",
+};
+
+export const Success = Template.bind({});
+Success.args = {
+  popupState: "success",
+  head: "File deleted",
+  description: "That's all :)",
+  buttonOneLabel: "Okay, thank you",
+  buttonTwoLabel: "Cancel",
+};
+
+export const Error = Template.bind({});
+Error.args = {
+  popupState: "error",
+  head: "Error",
+  description: "Sorry",
+  buttonOneLabel: "Delete",
+  buttonTwoLabel: "Cancel",
+};
+
+export const Contact = Template.bind({});
+Contact.args = {
+  popupState: "contact",
   head: "Head",
   description: "Description",
-  buttonOneLabel: "Delete",
+  buttonOneLabel: "Send",
   buttonTwoLabel: "Cancel",
 };
