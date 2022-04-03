@@ -6,6 +6,15 @@ Today's website UIs look night-and-day compared websites of the early days of th
 
 Following the specifications of a freely available [Figma design file](<https://www.figma.com/file/BU3ZLYOevT6bl6zwdA6T22/Browk-UI-KIT-(Community)?node-id=2286%3A3026>), I implemented 20 unique modern UI components, such as checkboxes, toggles, and dropdown menus, with React and StorybookJS. Each component is fit with dynamic and responsive states, and many have access to different colored themes and simulate data handling via Storybook's actions addon. You can checkout the UI kit [here](https://storybook-react-ui-kit.netlify.app/)!
 
+### StorybookJS Quick Tour
+
+If you are new to StorybookJS, here is a quick walk through of the Storybook's UI.
+
+1. Once you have [my storybook demo](https://storybook-react-ui-kit.netlify.app/) open, you will see the Storybook UI. On the left hand side, you will see a tab called "Components", under which is a list of ever component I implemented. To view a component, simply click on a component's name and then select the desired "story" from that components drop down, for instance "Default" or "Primary".
+2. From here, you will see the component in the center pane. You can interact with the component as you normally would any other web component. You can click on it, hover over it, etc.. You can also play around with the state and display text of the component the "Controls" tab in the bottom pane.
+3. For further fun, check out the "Actions" tab in the bottom pane to see any mock event handling (or ["actions"](https://storybook.js.org/docs/react/essentials/actions) as Storybook calls them) you might have executed when you clicked on or hovered the component. For instance, if you click on the "Button" component, the "Actions" tab will log an event called `handleClick` to confirm that the button is in fact set up to handle data. Also, **don't forget to checkout the "Themes" tab** in the bottom pane for the components that have alternative themes available! (Currently, only the components which have alternative themes in the Figma design file, and a few extra, have themes in my storybook. See the "Future Features" section below for details about my plans for the themes.)
+4. If any questions come up, you can of course consult the [StorybookJS docs](https://storybook.js.org/docs/react/get-started/introduction).
+
 ### Technologies
 
 As mentioned above (and in the title), this project is created with React and [StorybookJS](https://storybook.js.org/). As my goal was to learn and practice how to make the individual components of a web application, as opposed to the web application itself, StorybookJS was a perfect fit, as it allows developers to develop, test, and document components in isolation. Also, this project was a nice excuse to get familiar with StorybookJS and Figma's workflow.
