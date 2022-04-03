@@ -8,8 +8,8 @@ export default {
 
 const Template = (args) => <SelectTag {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Default = Template.bind({});
+Default.args = {
   label: "Your country",
   resultsArray: ["USA", "Canada", "Germany"],
 };

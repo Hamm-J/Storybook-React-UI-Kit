@@ -11,13 +11,14 @@ import PropTypes from "prop-types";
 const ContextMenu = ({ multipleLists, countryItems, timeItems }) => {
   // create an array of false values the length of countryItems for the initial
   // state of selected
-  const arrayOfFalse = new Array(countryItems.length).fill(false);
-  const [selectedCountry, setSelectedCountry] = useState(arrayOfFalse);
-  const [selectedTime, setSelectedTime] = useState(arrayOfFalse);
+  const arrayOfFalseCountry = new Array(countryItems.length).fill(false);
+  const arrayOfFalseTime = new Array(countryItems.length).fill(false);
+  const [selectedCountry, setSelectedCountry] = useState(arrayOfFalseCountry);
+  const [selectedTime, setSelectedTime] = useState(arrayOfFalseTime);
 
   const selectCountry = (oldBool, index) => {
     // create an array of false values
-    let newArray = arrayOfFalse;
+    let newArray = arrayOfFalseCountry;
     // Adjust the value you want flipped.
     newArray[index] = !oldBool;
     // Update the state with these new values.
@@ -26,7 +27,7 @@ const ContextMenu = ({ multipleLists, countryItems, timeItems }) => {
 
   const selectTime = (oldBool, index) => {
     // create an array of false values
-    let newArray = arrayOfFalse;
+    let newArray = arrayOfFalseTime;
     // Adjust the value you want flipped.
     newArray[index] = !oldBool;
     // Update the state with these new values.

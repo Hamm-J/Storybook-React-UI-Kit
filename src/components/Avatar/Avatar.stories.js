@@ -8,7 +8,17 @@ export default {
 
 const Template = (args) => <Avatar {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Sunglasses = Template.bind({});
+Sunglasses.args = {
   avatar: "😎",
+};
+
+export const Ghost = Template.bind({});
+Ghost.args = {
+  avatar: "👻",
+};
+
+export const Popcorn = Template.bind({});
+Popcorn.args = {
+  avatar: "🍿",
 };

@@ -12,11 +12,21 @@ export default {
 
 const Template = (args) => <Island {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Default = Template.bind({});
+Default.args = {
   head: "Head",
   description: "Description",
   progressBar: false,
+  progressBarValue: 50,
+  badgeLabel: "Your text",
+  buttonLabel: "Button",
+};
+
+export const Progress = Template.bind({});
+Progress.args = {
+  head: "Head",
+  description: "Description",
+  progressBar: true,
   progressBarValue: 50,
   badgeLabel: "Your text",
   buttonLabel: "Button",
