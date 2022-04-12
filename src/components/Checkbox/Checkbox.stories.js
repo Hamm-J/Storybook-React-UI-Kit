@@ -1,7 +1,7 @@
 import Checkbox from "./Checkbox";
 
 export default {
-  title: "Components/Checkbox",
+  title: "Components/Checkbox (Theme Support)",
   component: Checkbox,
 };
 

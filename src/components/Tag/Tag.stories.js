@@ -1,7 +1,7 @@
 import Tag from "./Tag";
 
 export default {
-  title: "Components/Tag",
+  title: "Components/Tag (Theme Support)",
   component: Tag,
   argTypes: { handleClose: { action: "handleClose" } },
 };

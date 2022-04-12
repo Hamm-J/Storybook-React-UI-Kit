@@ -1,7 +1,7 @@
 import Toggle from "./Toggle";
 
 export default {
-  title: "Components/Toggle",
+  title: "Components/Toggle (Theme Support)",
   component: Toggle,
   argTypes: {
     handleToggle: { action: "handleToggle" },
