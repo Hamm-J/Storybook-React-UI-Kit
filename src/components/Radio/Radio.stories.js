@@ -1,7 +1,7 @@
 import Radio from "./Radio";
 
 export default {
-  title: "Components/Radio",
+  title: "Components/Radio (Theme Support)",
   component: Radio,
 };
 
