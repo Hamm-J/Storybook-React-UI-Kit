@@ -9,7 +9,6 @@ export const IslandContainer = styled.div`
   position: relative;
 
   box-sizing: border-box;
-  /* box-shadow: ${(props) => props.theme.boxShadow}; */
   overflow-clip-margin: -2px;
   overflow: hidden;
 `;
@@ -120,7 +119,6 @@ export const PenIcon = styled(Edit)`
 
 export const TextWrapper = styled.div`
   padding-top: ${(props) => (props.progressBar ? "16px" : "0")};
-  /* padding-top: 16px; */
   padding-bottom: 32px;
 `;
 
@@ -145,7 +143,6 @@ export const ProgressBar = styled.progress`
   top: 0;
   left: 0;
   background: #ffffff00;
-  /* opacity: 0; */
   border: none;
   height: 24px;
   width: 100%;

@@ -66,6 +66,7 @@ const InputTag = ({
       e.preventDefault();
       setTags((prevState) => [...prevState, trimmedInputValue]);
       setInputValue("");
+      setInputState("default");
     }
     // if the entered tag is already within the tags array, alert user with error
     else if (tags.includes(trimmedInputValue)) {
@@ -111,6 +112,7 @@ const InputTag = ({
             <Tag
               key={tagIdx}
               label={tag}
+              size={"medium"}
               // pass handleClose function so that argTypes fires as intended for
               // Tag story
               handleClose={(e) => handleDelete(e)}

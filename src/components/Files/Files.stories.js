@@ -20,7 +20,7 @@ Default.args = {
 
 export const Dragover = Template.bind({});
 Dragover.args = {
-  filesState: "dragover",
+  filesState: "dragOver",
   description:
     "PNG, jpg, gif files up to 10MB in size are available for upload",
   errorMessage: "The file size exceeded 10MB",

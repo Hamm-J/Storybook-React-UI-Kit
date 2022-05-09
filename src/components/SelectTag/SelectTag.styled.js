@@ -29,6 +29,7 @@ export const TagWrapper = styled.div`
   display: flex;
   gap: 4px;
   padding-right: 4px;
+  min-width: fit-content;
 `;
 
 export const InputField = styled.input.attrs({ type: "input" })`
@@ -37,8 +38,8 @@ export const InputField = styled.input.attrs({ type: "input" })`
   width: 100%;
   min-width: 80%;
   margin: 0;
+  padding: 0;
   border: none;
-  padding: 8px 66px 0 0px;
   background: none;
   outline: none;
   font: ${(props) => props.theme.fontParagraph2};

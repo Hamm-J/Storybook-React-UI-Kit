@@ -2,7 +2,6 @@ import styled, { css } from "styled-components";
 import { Search, Close } from "@styled-icons/material";
 
 export const SearchContainer = styled.div`
-  /* TODO: JH2021_12_23: sort out how I should do the gap */
   display: flex;
   flex-direction: column;
   gap: 10px;
