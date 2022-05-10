@@ -9,7 +9,6 @@ export const IslandContainer = styled.div`
   position: relative;
 
   box-sizing: border-box;
-  /* box-shadow: ${(props) => props.theme.boxShadow}; */
   overflow-clip-margin: -2px;
   overflow: hidden;
 `;

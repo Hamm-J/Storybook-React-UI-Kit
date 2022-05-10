@@ -65,15 +65,6 @@ export const InputField = styled.input.attrs({ type: "input" })`
   &:not(:placeholder-shown).input__field:not(:focus) ~ .label {
     opacity: 0;
   }
-
-  /* &:focus ~ .input {
-    box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
-      0px 4px 24px rgba(51, 51, 51, 0.24);
-  }
-  &:active ~ .input {
-    box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
-      0px 4px 24px rgba(51, 51, 51, 0.24);
-  } */
 `;
 
 export const Label = styled.label`
