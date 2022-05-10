@@ -25,6 +25,7 @@ export const TagWrapper = styled.div`
   display: flex;
   gap: 4px;
   padding-right: 4px;
+  min-width: fit-content;
 `;
 
 export const OverFlowWrapper = styled.div`
@@ -46,8 +47,6 @@ export const InputField = styled.input.attrs({ type: "input" })`
   min-width: 80%;
   margin: 0;
   padding: 0;
-  top: 0;
-  left: 0;
   border: none;
   background: none;
   outline: none;
@@ -66,15 +65,6 @@ export const InputField = styled.input.attrs({ type: "input" })`
   &:not(:placeholder-shown).input__field:not(:focus) ~ .label {
     opacity: 0;
   }
-
-  /* &:focus ~ .input {
-    box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
-      0px 4px 24px rgba(51, 51, 51, 0.24);
-  }
-  &:active ~ .input {
-    box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
-      0px 4px 24px rgba(51, 51, 51, 0.24);
-  } */
 `;
 
 export const Label = styled.label`

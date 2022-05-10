@@ -61,9 +61,15 @@ const SelectTag = ({ label, resultsArray, handleDelete }) => {
         // if the selected value is already in the tags array, remove the value from
         // the tags array
       } else {
-        const tagsCopy = [...lowerCaseTags];
-        const filteredTags = tagsCopy.filter((e) => e !== lowerCaseValue);
-        setTags(filteredTags);
+        const lowerCaseTagsCopy = [...lowerCaseTags];
+        const tagsCopy = [...tags];
+
+        // find the position of the tag to remove in the lowerCaseTags
+        const tagIdx = lowerCaseTagsCopy.findIndex((e) => e === lowerCaseValue);
+
+        // Remove the tagIdx from the non-lower case tagsCopy
+        tagsCopy.splice(tagIdx, 1);
+        setTags(tagsCopy);
       }
 
       // show the closeButton because inputRef will not cause a render for
@@ -212,7 +218,7 @@ const SelectTag = ({ label, resultsArray, handleDelete }) => {
               setResultsWindow(true);
             }}
           />
-          <Label className="label" forHtml="input-field" tags={tags}>
+          <Label className="label" htmlFor="input-field" tags={tags}>
             {label}
           </Label>
         </OverFlowWrapper>
