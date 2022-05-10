@@ -218,7 +218,7 @@ const SelectTag = ({ label, resultsArray, handleDelete }) => {
               setResultsWindow(true);
             }}
           />
-          <Label className="label" forHtml="input-field" tags={tags}>
+          <Label className="label" htmlFor="input-field" tags={tags}>
             {label}
           </Label>
         </OverFlowWrapper>
