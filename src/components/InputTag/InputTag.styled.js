@@ -47,8 +47,6 @@ export const InputField = styled.input.attrs({ type: "input" })`
   min-width: 80%;
   margin: 0;
   padding: 0;
-  /* top: 0; */
-  /* left: 0; */
   border: none;
   background: none;
   outline: none;
