@@ -66,6 +66,7 @@ const InputTag = ({
       e.preventDefault();
       setTags((prevState) => [...prevState, trimmedInputValue]);
       setInputValue("");
+      setInputState("default");
     }
     // if the entered tag is already within the tags array, alert user with error
     else if (tags.includes(trimmedInputValue)) {
