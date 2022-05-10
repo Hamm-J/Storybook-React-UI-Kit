@@ -29,6 +29,7 @@ export const TagWrapper = styled.div`
   display: flex;
   gap: 4px;
   padding-right: 4px;
+  min-width: fit-content;
 `;
 
 export const InputField = styled.input.attrs({ type: "input" })`
