@@ -6,7 +6,8 @@ export const NotificationContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  width: 396px;
+  width: ${(props) =>
+    props.notificationState === "mobile" ? "306px" : "396px"};
   max-height: fit-content;
   box-sizing: border-box;
   box-shadow: ${(props) => props.theme.shadowDefault};

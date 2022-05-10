@@ -26,7 +26,10 @@ export const Notification = ({
   handleHelp,
 }) => {
   return (
-    <NotificationContainer showButtons={showButtons}>
+    <NotificationContainer
+      showButtons={showButtons}
+      notificationState={notificationState}
+    >
       <FlexTopRow
         notificationState={notificationState}
         showHead={showHead}
