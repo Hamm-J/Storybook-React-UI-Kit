@@ -111,6 +111,7 @@ const InputTag = ({
             <Tag
               key={tagIdx}
               label={tag}
+              size={"medium"}
               // pass handleClose function so that argTypes fires as intended for
               // Tag story
               handleClose={(e) => handleDelete(e)}
